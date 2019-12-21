@@ -44,3 +44,24 @@ router.delete('/deleteData', (req, res) => {
         return res.json({ success:true });
     });
 });
+
+//CREATE METHOD
+//this method adds new data in our DB
+router.post('/addData', (req, res) => {
+    let data = new Data();
+
+    const { id, meme } = req.body;
+
+    if ((!id && id !==0) || !message) {
+        return res.json({
+            success: false,
+            error: 'INVALID INPUTS'
+        });
+    }
+    data.meme = meme;
+    data.id = id;
+    data.save((err) => {
+        if (err) return res.json({ success: false, error: err});
+        return res.json({ success: true });
+    });
+});
