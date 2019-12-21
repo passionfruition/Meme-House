@@ -1,26 +1,40 @@
-.wrapper {
-  width: 80%;
+html {
+  background-color: lightblue;
+}
+
+.meme-wrapper {
+  width: 60%;
   height: 100%;
-  margin: auto;
-  text-align: center;
+  float: left;
+  /* margin: auto;
+  text-align: center; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* column-gap: 5px;
+  row-gap: 5px; */
 }
 
-.card {
-  width: 100%;
+.leaderboard-wrapper {
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+  float: right;
+  width: 40%;
   height: 100%;
+  background-color: white;
+  border: 2px solid lightgray;
 }
 
-.card:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-  opacity: .75;
+.leaderboard-wrapper img {
+  width: 80%;
+  height: 80%;
 }
 
-/* .card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  
+.logo {
+  object-fit: contain;
+}
+
+/* img {
+  margin: 5px;
 } */
 
