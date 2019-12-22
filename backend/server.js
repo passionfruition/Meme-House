@@ -11,7 +11,7 @@ app.use(cors());
 const router = express.Router();
 
 //MongoDB
-const dbRoute = 'mongodb://memes';
+const dbRoute = 'mongodb+srv://ga-cabrera:<password>@data-ffwv1.mongodb.net/test?retryWrites=true&w=majority';
 
 //connects out back end with db
 mongoose.connect(dbRoute, {useNewUrlParser: true});
