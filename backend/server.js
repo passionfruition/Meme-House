@@ -65,3 +65,9 @@ router.post('/addData', (req, res) => {
         return res.json({ success: true });
     });
 });
+
+// append /api for our http requests
+app.use('/api', router);
+
+// launch our backend into a port
+app.listen(API_PORT, () => console.log(`Connected to Router! Listening on port ${API_PORT}`));
