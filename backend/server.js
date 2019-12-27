@@ -5,16 +5,19 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Data = require('./data')
 
-const API_PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
 
 //MongoDB
-const dbRoute = 'mongodb+srv://ga-cabrera:<password>@data-ffwv1.mongodb.net/test?retryWrites=true&w=majority';
-
-//connects out back end with db
-mongoose.connect(dbRoute, {useNewUrlParser: true});
+const dbRoute = 'mongodb://localhost:27017/memes';
+//connecting back end code with DB
+mongoose.connect(dbRoute, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true 
+});
 
 let db = mongoose.connection;
 
@@ -70,4 +73,4 @@ router.post('/addData', (req, res) => {
 app.use('/api', router);
 
 // launch our backend into a port
-app.listen(API_PORT, () => console.log(`Connected to Router! Listening on port ${API_PORT}`));
+app.listen(PORT, () => console.log(`Connected to Router! Listening on port ${PORT}`));
