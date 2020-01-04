@@ -4,7 +4,7 @@ class MemeGrid extends Component {
     createGrid = () => {
         let grid = [];
         for (let i = 0; i < 24; i++) {
-            grid.push(<img alt="meme" key={i} src="https://via.placeholder.com/800?text=meme"></img>);
+            grid.push(<img alt="meme" key={i} src="https://www.placecage.com/200/300"></img>);
         }
         return grid;
     }
