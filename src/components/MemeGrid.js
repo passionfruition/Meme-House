@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class MemeGrid extends Component {
     createGrid = () => {
         let grid = [];
-        for (let i = 0; i < 24; i++) {
-            grid.push(<img alt="meme" key={i} src="https://www.placecage.com/200/300"></img>);
+        for (let i = 0; i < 8; i++) {
+            grid.push(<div className="meme"><img alt="meme" key={i} src="https://picsum.photos/300/300"></img></div>);
         }
         return grid;
     }
