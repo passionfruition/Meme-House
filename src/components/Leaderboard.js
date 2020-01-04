@@ -5,7 +5,7 @@ class Leaderboard extends Component {
         let leaders = [];
         for(let i = 0; i < 3; i ++) {
             leaders.push(
-                <div className="lead-meme">
+                <div className="lead-meme" key={i}>
                 <img src="https://picsum.photos/300/300" alt="meme"></img>
                 <span>
                 <i className="fas fa-crown"></i>
