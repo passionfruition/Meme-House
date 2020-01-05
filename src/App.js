@@ -4,7 +4,6 @@ import './App.css';
 import MemeGrid from '../src/components/MemeGrid';
 import Navbar from '../src/components/Navbar';
 import Leaderboard from '../src/components/Leaderboard';
-import AddButton from '../src/components/AddButton';
 import MemeModal from '../src/components/MemeModal';
 
 class App extends Component {
@@ -28,6 +27,34 @@ class App extends Component {
     }
   }
 
+  createGrid = () => {
+    let grid = [];
+    for (let i = 0; i < 16; i++) {
+      grid.push(
+        <div className="meme" key={i}>
+          <img alt="meme" src="https://picsum.photos/300/300"></img>
+          <i className="fas fa-heart"></i>
+        </div>);
+    }
+    return grid;
+  }
+
+  displayLeaders = () => {
+    let leaders = [];
+    for (let i = 0; i < 3; i++) {
+      leaders.push(
+        <div className="lead-meme" key={i}>
+          <img src="https://picsum.photos/300/300" alt="meme"></img>
+          <span>
+            <i className="fas fa-crown"></i>
+            <h1>{i + 1}</h1>
+          </span>
+        </div>
+      )
+    }
+    return leaders;
+  }
+
   showModal = () => {
     this.setState({ modal: "is-active" });
   }
@@ -44,10 +71,9 @@ class App extends Component {
     return (
       <div className="wrapper">
         <MemeModal attribute={this.state.modal} hideModal={this.hideModal} />
-        <Navbar showModal={this.showModal}/>
-        <Leaderboard />
-
-        <MemeGrid />
+        <Navbar showModal={this.showModal} />
+        <Leaderboard displayLeaders={this.displayLeaders}/>
+        <MemeGrid createGrid={this.createGrid} />
       </div>
     );
   }
