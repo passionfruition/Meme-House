@@ -23,12 +23,21 @@
   align-items: center;
 }
 
-.meme .fa-heart {
+.meme .like-button {
   position: absolute;
   height: 50px;
   width: 50px;
   z-index: 1;
   color: red;
+  display: none;
+}
+
+.meme:hover .like-button {
+  display:block;
+}
+
+.fa-crown {
+  color: gold;
 }
 
 .leaderboard-wrapper {
@@ -59,11 +68,6 @@
 .logo {
   object-fit: contain;
 }
-
-.lead-meme i {
-  color: yellow;
-}
-
 
 /* Larger screens */
 @media only screen and (min-width: 550px) {
