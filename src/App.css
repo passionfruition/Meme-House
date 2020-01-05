@@ -1,51 +1,78 @@
 html {
-  background-color: lightblue;
+  /* background-color: lightblue; */
 }
+
+.navbar {
+  z-index: 99;
+}
+/* .wrapper {
+  width: 80%;
+} */
 
 .meme-wrapper {
   width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
+  grid-gap: 10px;
 }
-
+/* 
 #add-meme {
-  width: 100%; 
-}
-i {
+  width: 80%; 
+} */
+
+/* i {
   margin-right: 10px;
-}
+} */
+
 .meme-wrapper img {
   width: 100%;
   object-fit: cover;  
+  
+}
+
+.meme {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meme .fa-heart {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  color: red;
 }
 
 .leaderboard-wrapper {
-  top: 0;
-  padding: 20px;
-  margin: auto;
+  /* top: 0; */
+  /* padding: 20px; */
   text-align: center;
   width: 100%;
   height: 100%;
+  z-index: 1;
   background-color: white;
-  border: 2px solid lightgray;
+  /* border: 2px solid lightgray; */
 }
 
 .leaderboard-wrapper img {
+  
   width: 60%;
-  height: 60%;
+  height: auto;
+  object-fit: cover;
 }
 
 .leaderboard-wrapper h1 {
   display: inline;
-  margin-left: 5px;
 }
 
 .leaderboard-wrapper .lead-meme {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  height: 30%;
 }
 
 .logo {
@@ -63,16 +90,17 @@ i {
     width: 70%;
     float: left;
     grid-template-columns: 1fr 1fr;
+    justify-content: space-around;
   }
   .leaderboard-wrapper {
     width: 30%;
-    
-    float: right;
+    position: fixed;
+    height: 100vh;
+    z-index: 2;
+    right:0;
+    /* transform: translateY(-80px); */
   }
-  .leaderboard-wrapper img {
-    width: 60%;
-    height: 60%;
-  }
+
 }
 
 @media only screen and (min-width: 800px) {
@@ -83,5 +111,9 @@ i {
   }
   .leaderboard-wrapper {
     width: 20%;
+    position: fixed;
+    height: 100vh;
+    z-index: 2;
+    right: 0;
   }
 }

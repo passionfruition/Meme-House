@@ -9,7 +9,23 @@ import MemeModal from '../src/components/MemeModal';
 
 class App extends Component {
   state = {
-    modal: ""
+    modal: "",
+    hovered: false
+  }
+
+  componentDidMount() {
+    // Bulma mobile toggle
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach(el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
   }
 
   showModal = () => {
@@ -19,13 +35,18 @@ class App extends Component {
   hideModal = () => {
     this.setState({ modal: "" });
   }
+
+  displayLikeOnHover = () => {
+
+  }
+
   render() {
     return (
-      <div>
-        <MemeModal attribute={this.state.modal} hideModal={this.hideModal}/>
-        <Navbar />
-        <AddButton showModal={this.showModal}/>
+      <div className="wrapper">
+        <MemeModal attribute={this.state.modal} hideModal={this.hideModal} />
+        <Navbar showModal={this.showModal}/>
         <Leaderboard />
+
         <MemeGrid />
       </div>
     );
