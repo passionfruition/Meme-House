@@ -22,6 +22,7 @@ function Navbar(props) {
                     <div className="navbar-item">
                         <div className="buttons">
                             <AddButton showModal={props.showModal} />
+                            <button className="button" onClick={() => props.showModal("zoom")}>Zoom modal</button>
                         </div>
                     </div>
                 </div>
