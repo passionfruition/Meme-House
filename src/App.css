@@ -1,40 +1,104 @@
-html {
-  background-color: lightblue;
+.navbar {
+  z-index: 99;
 }
 
 .meme-wrapper {
-  width: 60%;
+  width: 100%;
   height: 100%;
-  float: left;
-  /* margin: auto;
-  text-align: center; */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  /* column-gap: 5px;
-  row-gap: 5px; */
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+
+.meme-wrapper img {
+  width: 100%;
+  object-fit: cover;  
+  
+}
+
+.meme {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meme .like-button {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  color: red;
+  display: none;
+}
+
+.meme:hover .like-button {
+  display:block;
+}
+
+.fa-crown {
+  color: gold;
 }
 
 .leaderboard-wrapper {
-  padding: 20px;
-  margin: auto;
   text-align: center;
-  float: right;
-  width: 40%;
+  width: 100%;
   height: 100%;
+  z-index: 1;
   background-color: white;
-  border: 2px solid lightgray;
 }
 
 .leaderboard-wrapper img {
-  width: 80%;
-  height: 80%;
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+}
+
+.leaderboard-wrapper h1 {
+  display: inline;
+}
+
+.leaderboard-wrapper .lead-meme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
 }
 
 .logo {
   object-fit: contain;
 }
 
-/* img {
-  margin: 5px;
-} */
+/* Larger screens */
+@media only screen and (min-width: 550px) {
+  .meme-wrapper {
+    width: 70%;
+    float: left;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-around;
+  }
+  .leaderboard-wrapper {
+    width: 30%;
+    position: fixed;
+    height: 100vh;
+    z-index: 2;
+    right:0;
+    /* transform: translateY(-80px); */
+  }
 
+}
+
+@media only screen and (min-width: 800px) {
+  .meme-wrapper {
+    width: 80%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+  }
+  .leaderboard-wrapper {
+    width: 20%;
+    position: fixed;
+    height: 100vh;
+    z-index: 2;
+    right: 0;
+  }
+}
