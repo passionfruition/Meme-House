@@ -1,3 +1,4 @@
+/* Content */
 .content {
     position: relative;
     display: flex;
@@ -6,6 +7,7 @@
 }
 
 img {
+    width: 100%;
     max-height: 500px;
     height: auto;
     object-fit: contain;
@@ -16,7 +18,7 @@ img {
   margin: 0;
   width: 100%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 48px;
+  font-size: 50px;
   text-align: center;
   text-transform: uppercase;
   color: #fff!important;
@@ -26,9 +28,33 @@ img {
 }
 
 .textTop {
-    top: 16px;
+    top: 1%;
 }
 
 .textBottom {
-    bottom: 32px;
+    bottom: 1%;
+}
+
+/* End Content */
+
+/* Form */
+.form {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.formInputs, .formButtons {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 0.25rem;
+}
+
+.formInputs input {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 10px;
+}
+
+.formButtons .button {
+    margin: 0 auto;
 }

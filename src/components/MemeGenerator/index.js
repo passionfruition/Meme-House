@@ -1,5 +1,6 @@
 import * as React from 'react';
 import domtoimage from 'dom-to-image-more';
+import { saveAs } from 'file-saver';
 import './style.css';
 
 function MemeGenerator() {
@@ -9,6 +10,7 @@ function MemeGenerator() {
   const [activeImage, setActiveImage] = React.useState('')
   const [textTop, setTextTop] = React.useState('')
   const [textBottom, setTextBottom] = React.useState('')
+  const [isMemeGenerated, setIsMemeGenerated] = React.useState(false)
   
 
   async function fetchImage() {
@@ -20,7 +22,7 @@ function MemeGenerator() {
     await setImages(memes)
 
     // Update activeImage state
-    await setActiveImage(memes[2].url)
+    await setActiveImage(memes[25].url)
   }
 
   // function handleImageChange() {
@@ -46,6 +48,17 @@ function MemeGenerator() {
     }
   }
 
+  function handleMemeGeneration() {
+    domtoimage.toPng(contentContainerRef.current).then((dataUrl) => {
+
+      // Save image
+      window.saveAs(dataUrl, 'meme.png');
+
+      // Update state for isMemeGenerated
+      setIsMemeGenerated(true)
+    })
+  }
+
   React.useEffect(() => {
     // Call fetchImage method
     fetchImage()
@@ -53,11 +66,11 @@ function MemeGenerator() {
 
   return (
     <div>
-      <form>
-        <div className='formInputs'>
+      <form className="form">
+        <div className="formInputs">
           <input
             name="text-top"
-            placeholder="Text top"
+            placeholder="Top Text"
             type="text"
             value={textTop}
             onChange={handleInputChange}
@@ -65,12 +78,31 @@ function MemeGenerator() {
 
           <input
             name="text-bottom"
-            placeholder="Text bottom"
+            placeholder="Bottom Text"
             type="text"
             value={textBottom}
             onChange={handleInputChange}
           />
         </div>
+
+        <div className="formButtons">
+          <label
+            className="button is-link"
+            htmlFor="fileInput"
+          >
+            Load image
+            <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
+          </label>
+
+          <button
+            className="button"
+            type="button"
+            onClick={handleMemeGeneration}
+          >
+            Generate meme
+          </button>
+        </div>
+
       </form>
 
       {/*Content Div */}
