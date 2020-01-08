@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import MemeGrid from '../src/components/MemeGrid';
@@ -69,6 +70,8 @@ class App extends Component {
   displayLikeOnHover = () => {
     this.setState({ hovered: true});
   }
+
+  // Meme Generator //
 
   render() {
     return (
