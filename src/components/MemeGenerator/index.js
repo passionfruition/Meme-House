@@ -50,10 +50,8 @@ function MemeGenerator() {
 
   function handleMemeGeneration() {
     domtoimage.toPng(contentContainerRef.current).then((dataUrl) => {
-
       // Save image
       window.saveAs(dataUrl, 'meme.png');
-
       // Update state for isMemeGenerated
       setIsMemeGenerated(true)
     })
@@ -68,6 +66,7 @@ function MemeGenerator() {
     <div>
       <form className="form">
         <div className="formInputs">
+          {/* Top Text Input */}
           <input
             name="text-top"
             placeholder="Top Text"
@@ -75,7 +74,7 @@ function MemeGenerator() {
             value={textTop}
             onChange={handleInputChange}
           />
-
+          {/* Bottom Text Input */}
           <input
             name="text-bottom"
             placeholder="Bottom Text"
@@ -86,6 +85,7 @@ function MemeGenerator() {
         </div>
 
         <div className="formButtons">
+          {/* Upload Meme Button */}
           <label
             className="button is-link"
             htmlFor="fileInput"
@@ -93,9 +93,9 @@ function MemeGenerator() {
             Load image
             <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
           </label>
-
+          {/* Download Meme Button */}
           <button
-            className="button"
+            className="button is-success"
             type="button"
             onClick={handleMemeGeneration}
           >
@@ -109,10 +109,8 @@ function MemeGenerator() {
       <div className="content" ref={contentContainerRef}>
         {/* Image preview */}
         <img src={activeImage} alt="Meme" />
-
         {/* Text at the top */}
         <h1 className="textTop">{textTop}</h1>
-
         {/* Text at the bottom */}
         <h1 className="textBottom">{textBottom}</h1>
       </div>
