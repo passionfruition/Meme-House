@@ -1,4 +1,5 @@
 import React from "react";
+import MemeGenerator from '../components/MemeGenerator';
 
 function MemeModal(props) {
     return (
@@ -9,6 +10,9 @@ function MemeModal(props) {
             <p class="modal-card-title">Meme Generator</p>
             <button class="delete" onClick={() => props.hideModal("generator")} aria-label="close"></button>
             </header>
+                <section className="modal-card-body">
+                    <MemeGenerator />
+                </section>
             </div>
         </div>
     )

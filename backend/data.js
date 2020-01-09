@@ -13,4 +13,4 @@ const DataSchema = new Schema(
 );
 
 // export new Schema to modify using Node.js
-module.exports = mongoose.model('Data', DataSchema);
+module.exports = mongoose.model('meme', DataSchema);
