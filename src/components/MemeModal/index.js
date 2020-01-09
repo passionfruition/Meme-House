@@ -1,5 +1,5 @@
 import React from "react";
-import MemeGenerator from '../components/MemeGenerator';
+import MemeGenerator from '../MemeGenerator'
 
 function MemeModal(props) {
     return (
