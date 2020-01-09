@@ -3,13 +3,13 @@ import MemeGenerator from '../components/MemeGenerator';
 
 function MemeModal(props) {
     return (
-        <div className={"modal " + props.attribute}>
+        <div className={"generator-modal modal " + props.attribute}>
             <div className="modal-background"></div>
-            <div className="modal-card has-background-white">
-                <header className="modal-card-head">
-                    <p className="modal-card-title">Generate a Meme!</p>
-                    <button className="modal-close is-large" onClick={props.hideModal} aria-label="close"></button>
-                </header>
+            <div className="modal-content has-background-white">
+            <header class="modal-card-head">
+            <p class="modal-card-title">Meme Generator</p>
+            <button class="delete" onClick={() => props.hideModal("generator")} aria-label="close"></button>
+            </header>
                 <section className="modal-card-body">
                     <MemeGenerator />
                 </section>
