@@ -6,11 +6,12 @@ import './style.css';
 function MemeGenerator() {
   let contentContainerRef = React.useRef(null)
   
-  const [images, setImages] = React.useState([])
-  const [activeImage, setActiveImage] = React.useState('')
-  const [textTop, setTextTop] = React.useState('')
-  const [textBottom, setTextBottom] = React.useState('')
-  const [isMemeGenerated, setIsMemeGenerated] = React.useState(false)
+  const [images, setImages] = React.useState([]);
+  const [activeImage, setActiveImage] = React.useState('');
+  const [textTop, setTextTop] = React.useState('');
+  const [textBottom, setTextBottom] = React.useState('');
+  const [isMemeGenerated, setIsMemeGenerated] = React.useState(false);
+  // let imageNames = images.map((data) => <option className="is-clipped" value={data.name} key={data.name}>{data.name}</option>);
   
 
   async function fetchImage() {
@@ -20,18 +21,18 @@ function MemeGenerator() {
 
     // Update images state
     await setImages(memes)
+    // console.log(memes.map((data) => { return data.name} ));
 
     // Update activeImage state
-    await setActiveImage(memes[25].url)
+    await setActiveImage(memes[16].url)
   }
 
-  // function handleImageChange() {
-  //   // Choose random image
-  //   const image = images[Math.floor(Math.random() * images.length)]
-
-  //   // Update activeImage state
-  //   setActiveImage(image.url)
-  // }
+  function handleImageChange() {
+    // Choose image
+    
+    // Update activeImage state
+    // setActiveImage(image.url)
+  }
 
   function handleImageInputChange(event) {
     // Update activeImage state
@@ -102,7 +103,13 @@ function MemeGenerator() {
             Generate meme
           </button>
         </div>
-
+        {/* Meme Name Dropdown */}
+        {/* <div className="select is-small dropdown">
+            <select onClick={handleImageChange}>
+              <option>Pick a Meme</option>
+              {imageNames}
+            </select>
+        </div> */}
       </form>
 
       {/*Content Div */}
