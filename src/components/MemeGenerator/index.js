@@ -91,7 +91,12 @@ function MemeGenerator() {
             className="button is-link"
             htmlFor="fileInput"
           >
-            Load image
+            <span className="file-icon">
+              <i className="fas fa-upload"></i>
+            </span>
+            <span className="file-label">
+              Upload image
+            </span>
             <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
           </label>
           {/* Download Meme Button */}
