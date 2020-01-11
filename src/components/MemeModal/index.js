@@ -6,9 +6,9 @@ function MemeModal(props) {
         <div className={"generator-modal modal " + props.attribute}>
             <div className="modal-background"></div>
             <div className="modal-content has-background-white">
-            <header class="modal-card-head">
-            <p class="modal-card-title">Meme Generator</p>
-            <button class="delete" onClick={() => props.hideModal("generator")} aria-label="close"></button>
+            <header className="modal-card-head">
+            <p className="modal-card-title">Meme Generator</p>
+            <button className="delete" onClick={() => props.hideModal("generator")} aria-label="close"></button>
             </header>
                 <section className="modal-card-body">
                     <MemeGenerator />
