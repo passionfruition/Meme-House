@@ -29,9 +29,9 @@ function MemeGenerator() {
 
   function handleImageChange() {
     // Choose image
-    
+    const image = images[Math.floor(Math.random() * images.length)]
     // Update activeImage state
-    // setActiveImage(image.url)
+    setActiveImage(image.url)
   }
 
   function handleImageInputChange(event) {
@@ -99,6 +99,14 @@ function MemeGenerator() {
             </span>
             <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
           </label>
+          {/* Randomize Meme Button */}
+          <button
+            className="button is-danger"
+            type="button"
+            onClick={handleImageChange}
+          >
+            Randomize meme
+          </button>
           {/* Download Meme Button */}
           <button
             className="button is-success"
