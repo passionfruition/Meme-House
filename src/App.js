@@ -19,9 +19,7 @@ class App extends Component {
     memeClicked: "https://picsum.photos/800/400",
     // Initializing state for Meme DB - GC
     memeArray: [],
-    id: 0,
-    meme: null,
-    idToDelete: null,
+    meme: null
   }
 
   componentDidMount() {
@@ -127,48 +125,38 @@ class App extends Component {
 
   // Meme Generator //
 
-  uploadWidget() {
+  uploadWidget = () => {
     window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags:['meme']},
     function(error, result) {
-      console.log('*************upload*************')
+      console.log('************* uploading... *************')
         if (result.event === "success") {
-          console.log(result);
-          // memeToDB(result.info.url);
+          console.log(`Success! added to your Database -- ${result.info.url}`)
+          axios.post('/api/putData', {
+            meme: result.info.url
+          })
+          .then((result) => {
+           let newMeme = result.config.data; 
+            let tempArray = [];
+            tempArray.push(newMeme);
+            this.setState({ memeArray: tempArray });
+          })
+          .catch((err) => {
+            if(err) throw err;
+          });
         }
-    });
+    }.bind(this));
   }
+
 
 
   render() {
     return (
  <div className="wrapper">
             <div className="upload">
-                <button onClick={this.uploadWidget.bind(this)} className="upload-button">
+                <button onClick={this.uploadWidget} className="upload-button">
                     Add Image
                 </button>
             </div>
-        <ul>
-      {this.state.memeArray.length <= 0
-        ? 'NO MEMES YET'
-        : this.state.memeArrray.map((result, x) => (
-            <li style={{ padding: '10px' }} key={result._id}>
-              <span style={{ color: 'gray' }}> id: </span> {result.id} <br />
-              <span style={{ color: 'gray' }}> data: </span>
-              {result.meme}
-            </li>
-          ))}
-    </ul>
-    <div style={{ padding: '10px' }}>
-      <input
-        type="text"
-        onChange={(e) => this.setState({ message: e.target.value })}
-        placeholder="add something in the database"
-        style={{ width: '200px' }}
-      />
-      <button onClick={() => this.putDataToDB(this.state.message)}>
-        ADD
-      </button>
-      </div>
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
         <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} memeClicked={this.state.memeClicked}/>
         <Navbar showModal={this.showModal} />

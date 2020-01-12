@@ -22,15 +22,15 @@ function Navbar(props) {
                     <div className="navbar-item">
                         <div className="buttons">
                             <AddButton showModal={props.showModal} />
-                            <button className="button" onClick={() => props.showModal("zoom")}>Zoom modal</button>
+                            {/* <button className="button" onClick={() => props.showModal("zoom")}>Zoom modal</button> */}
                         </div>
                     </div>
                 </div>
 
                 <div className="navbar-end">
                     <div className="navbar-item">
-                        <a className="navbar-item">Gallery</a>
-                        <a className="navbar-item">Favorites</a>
+                        {/* <a className="navbar-item">Gallery</a>
+                        <a className="navbar-item">Favorites</a> */}
                         <div className="buttons">
                             <a className="button is-link">
                                 <strong>Log in</strong>
