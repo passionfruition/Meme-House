@@ -1,28 +1,56 @@
-const express = require("express");
-const mongoose = require("mongoose");
-// const routes = require("./routes");
-const PORT = process.env.PORT || 9999;
+const mongoose = require('mongoose');
+const express = require('express');
+var cors = require('cors');
+const bodyParser = require('body-parser');
+const Data = require('./data.js');
+
+const API_PORT = 3001;
 const app = express();
+app.use(cors());
+const router = express.Router();
 
-// Initialize Axios and Cheerio
-var axios = require("axios");
+// this is our MongoDB database
+const dbRoute =
+  'mongodb://localhost:27017/memes';
 
-// Require all models
-var db = require("./models/memes");
+// connects our back end code with the database
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("public"));
+let db = mongoose.connection;
 
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("public"));
-// }
+db.once('open', () => console.log('connected to the database'));
 
-// app.use(routes);
+// checks if connection with the database is successful
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/memedb"
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+// (optional) only made for logging and
+// bodyParser, parses the request body to be a readable json format
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// this is our get method
+// this method fetches all available data in our database
+router.get('/getData', (req, res) => {
+  Data.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
+  const { meme } = req.body;
+
+  if (!meme) {
+    return res.json({
+      success: false,
+      error: 'INVALID INPUTS',
+    });
+  }
+  data.meme = meme;
+  data.save((err) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ data });
+  });
+});
 
 app.listen(PORT, () => {
     console.log(`🌎 ==> API server now on port ${PORT}!`);

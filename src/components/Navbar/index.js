@@ -21,34 +21,18 @@ function Navbar(props) {
             <div id="navbarBasic" className="navbar-menu">
                 <div className="navbar-start">
                     <div className="navbar-item">
-                        {/* <div className="buttons">
-                            <AddButton showModal={props.showModal} />
-                            <button className="button" onClick={() => props.showModal("zoom")}>Zoom modal</button>
-                        </div> */}
                     </div>
                 </div>
 
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <button className="button is-success" onClick={() => props.showModal("leader")}>
-                                Leaderboard
-                            </button>
+                            <button className="button is-success" onClick={() => props.showModal("leader")}>Leaderboard</button>
                             <AddButton showModal={props.showModal} />
-                            {/* <button className="button" onClick={() => props.showModal("zoom")}>Zoom modal</button> */}
-                            {/* <a className="navbar-item">Gallery</a>
-                            <a className="navbar-item">Favorites</a>
-                            <div className="buttons">
-                                <a className="button is-link">
-                                    <strong>Log in</strong>
-                                </a>
-                            </div> */}
+                            <a className="button is-link"><strong>Log in</strong></a>
                         </div>
                     </div>
                 </div>
-                {/* <div className="column is-2">
-                    <Leaderboard displayLeaders={props.displayLeaders} />
-                </div> */}
             </div>
         </nav>
     );

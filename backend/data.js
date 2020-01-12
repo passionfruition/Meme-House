@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 //DB data structure
 const DataSchema = new Schema(
     {
-        id: Number,
-        meme: String
+        meme: {
+            type: String,
+            required: true
+        }
     },
     {
         timestamps: true
