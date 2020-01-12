@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
-const logger = require('morgan');
-const Data = require('./data');
+const Data = require('./data.js');
 
 const API_PORT = 3001;
 const app = express();
@@ -28,7 +27,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // bodyParser, parses the request body to be a readable json format
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(logger('dev'));
 
 // this is our get method
 // this method fetches all available data in our database
@@ -64,16 +62,15 @@ router.delete('/deleteData', (req, res) => {
 router.post('/putData', (req, res) => {
   let data = new Data();
 
-  const { id, meme } = req.body;
+  const { meme } = req.body;
 
-  if ((!id && id !== 0) || !meme) {
+  if (!meme) {
     return res.json({
       success: false,
       error: 'INVALID INPUTS',
     });
   }
   data.meme = meme;
-  data.id = id;
   data.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ data });
