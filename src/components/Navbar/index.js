@@ -31,7 +31,7 @@ function Navbar(props) {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <button className="button">
+                            <button className="button is-success" onClick={() => props.showModal("leader")}>
                                 Leaderboard
                             </button>
                             <AddButton showModal={props.showModal} />

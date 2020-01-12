@@ -1,87 +1,29 @@
-const mongoose = require('mongoose');
-const express = require('express');
-var cors = require('cors');
-const bodyParser = require('body-parser');
-const logger = require('morgan');
-const Data = require('./data');
-
-const API_PORT = 3001;
+const express = require("express");
+const mongoose = require("mongoose");
+// const routes = require("./routes");
+const PORT = process.env.PORT || 9999;
 const app = express();
-app.use(cors());
-const router = express.Router();
 
-// this is our MongoDB database
-const dbRoute =
-  'mongodb://localhost:27017/memes';
+// Initialize Axios and Cheerio
+var axios = require("axios");
 
-// connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
+// Require all models
+var db = require("./models/memes");
 
-let db = mongoose.connection;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
 
-db.once('open', () => console.log('connected to the database'));
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static("public"));
+// }
 
-// checks if connection with the database is successful
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// app.use(routes);
 
-// (optional) only made for logging and
-// bodyParser, parses the request body to be a readable json format
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(logger('dev'));
+// Connect to the Mongo DB
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/memedb"
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-// this is our get method
-// this method fetches all available data in our database
-router.get('/getData', (req, res) => {
-  Data.find((err, data) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data: data });
-  });
+app.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
-
-// this is our update method
-// this method overwrites existing data in our database
-router.post('/updateData', (req, res) => {
-  const { id, update } = req.body;
-  Data.findByIdAndUpdate(id, update, (err) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
-
-// this is our delete method
-// this method removes existing data in our database
-router.delete('/deleteData', (req, res) => {
-  const { id } = req.body;
-  Data.findByIdAndRemove(id, (err) => {
-    if (err) return res.send(err);
-    return res.json({ success: true });
-  });
-});
-
-// this is our create methid
-// this method adds new data in our database
-router.post('/putData', (req, res) => {
-  let data = new Data();
-
-  const { id, meme } = req.body;
-
-  if ((!id && id !== 0) || !meme) {
-    return res.json({
-      success: false,
-      error: 'INVALID INPUTS',
-    });
-  }
-  data.meme = meme;
-  data.id = id;
-  data.save((err) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ data });
-  });
-});
-
-// append /api for our http requests
-app.use('/api', router);
-
-// launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));

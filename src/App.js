@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 // import { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import MemeGrid from '../src/components/MemeGrid';
-import Navbar from '../src/components/Navbar';
-import Leaderboard from '../src/components/Leaderboard';
-import MemeModal from '../src/components/MemeModal';
-import ZoomModal from '../src/components/ZoomModal';
+import MemeGrid from '../src/components/MemeGrid/index';
+import Navbar from '../src/components/Navbar/index';
+import Leaderboard from '../src/components/Leaderboard/index';
+import MemeModal from '../src/components/MemeModal/index';
+import ZoomModal from '../src/components/ZoomModal/index';
+import axios from "axios";
 
 class App extends Component {
   state = {
     zoomModal: "",
     generatorModal: "",
+    leaderModal: "",
     hovered: false,
     memeClicked: "https://picsum.photos/800/400"
   }
@@ -38,9 +40,9 @@ class App extends Component {
         <div className="meme" key={i}>
           <img alt="meme" src="https://picsum.photos/300/300" onClick={() => this.showModal("zoom")}></img>
           <div className="like-button">
-          <a className="button"><i class="fas fa-thumbs-up"></i></a>
+            <a className="button"><i className="fas fa-thumbs-up"></i></a>
           </div>
-          
+
         </div>);
     }
     return grid;
@@ -52,10 +54,10 @@ class App extends Component {
       leaders.push(
         <div className="lead-meme" key={i}>
           <img src="https://picsum.photos/300/300" alt="meme"></img>
-          <span>
+          <div>
             <i className="fas fa-crown"></i>
-            <h1>{i + 1}</h1>
-          </span>
+            <span>{i + 1}</span>
+          </div>
         </div>
       )
     }
@@ -63,23 +65,35 @@ class App extends Component {
   }
 
   showModal = (modal) => {
-    if (modal === "zoom") {
-      this.setState({ zoomModal: "is-active" });
-    } else {
-      this.setState({ generatorModal: "is-active" });
+    switch(modal) {
+      case "zoom":
+        this.setState({ zoomModal: "is-active" });
+        break;
+      case "generator":
+        this.setState({ generatorModal: "is-active" });
+        break;
+      case "leader":
+        this.setState({leaderModal : "is-active"})
+        break;
     }
   }
 
   hideModal = (modal) => {
-    if (modal === "zoom") {
-      this.setState({ zoomModal: "" });
-    } else {
-      this.setState({ generatorModal: "" });
+    switch(modal) {
+      case "zoom":
+        this.setState({ zoomModal: "" });
+        break;
+      case "generator":
+        this.setState({ generatorModal: "" });
+        break;
+      case "leader":
+        this.setState({leaderModal : ""})
+        break;
     }
   }
 
   displayLikeOnHover = () => {
-    this.setState({ hovered: true});
+    this.setState({ hovered: true });
   }
 
   // Meme Generator //
@@ -88,10 +102,18 @@ class App extends Component {
     return (
       <div className="wrapper">
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
-        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} memeClicked={this.state.memeClicked}/>
-        <Navbar showModal={this.showModal} />
-        <Leaderboard displayLeaders={this.displayLeaders}/>
-        <MemeGrid createGrid={this.createGrid} hovered={this.state.hovered}/>
+        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} memeClicked={this.state.memeClicked} />
+        <Leaderboard displayLeaders={this.displayLeaders} attribute={this.state.leaderModal} hideModal={this.hideModal} />
+        <Navbar showModal={this.showModal} displayLeaders={this.displayLeaders} />
+
+        <div className="columns is-centered">
+          <div className="column is-9">
+            <MemeGrid createGrid={this.createGrid} hovered={this.state.hovered} />
+          </div>
+          {/* <div className="column is-2">
+            <Leaderboard displayLeaders={this.displayLeaders} />
+          </div>  */}
+        </div>
       </div>
     );
   }
