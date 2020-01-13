@@ -42,7 +42,7 @@ class App extends Component {
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
     axios.get('http://localhost:3001/memes/')
-    .then((res) => this.setState({ memeGallery: res.data}))
+      .then((res) => this.setState({ memeGallery: res.data }))
   };
 
   //put method that uses our backend api to create new entry/upload into DB - GC
@@ -57,17 +57,17 @@ class App extends Component {
       id: idToBeAdded,
       meme: memeUpload
     })
-    .then((result) => {
-     let newMeme = result.data.data 
-      console.log(result.data.data)
-      let tempArray = this.state.data;
-      tempArray.push(newMeme);
-      this.setState({ data: tempArray });
-    })
-    .catch((err) => {
-      if(err) 
-      console.log(err);
-    });
+      .then((result) => {
+        let newMeme = result.data.data
+        console.log(result.data.data)
+        let tempArray = this.state.data;
+        tempArray.push(newMeme);
+        this.setState({ data: tempArray });
+      })
+      .catch((err) => {
+        if (err)
+          console.log(err);
+      });
   };
 
   createGrid = () => {
@@ -77,9 +77,9 @@ class App extends Component {
         <div className="meme" key={i}>
           <img alt="meme" src="" onClick={() => this.showModal("zoom")}></img>
           <div className="like-button">
-          <a className="button"><i className="fas fa-thumbs-up"></i></a>
+            <a className="button"><i className="fas fa-thumbs-up"></i></a>
           </div>
-          
+
         </div>);
     }
     return grid;
@@ -102,7 +102,7 @@ class App extends Component {
   }
 
   showModal = (modal) => {
-    switch(modal) {
+    switch (modal) {
       case "zoom":
         this.setState({ zoomModal: "is-active" });
         break;
@@ -110,13 +110,13 @@ class App extends Component {
         this.setState({ generatorModal: "is-active" });
         break;
       case "leader":
-        this.setState({leaderModal : "is-active"})
+        this.setState({ leaderModal: "is-active" })
         break;
     }
   }
 
   hideModal = (modal) => {
-    switch(modal) {
+    switch (modal) {
       case "zoom":
         this.setState({ zoomModal: "" });
         break;
@@ -124,20 +124,19 @@ class App extends Component {
         this.setState({ generatorModal: "" });
         break;
       case "leader":
-        this.setState({leaderModal : ""})
+        this.setState({ leaderModal: "" })
         break;
     }
   }
 
   likeMeme = () => {
-    var thisId = this.attr("data-id");
-    console.log(thisId);
+
   }
 
   showZoomedMeme = (event) => {
     // console.log("event target: " + event.target.dataset['id']);
     // console.log("event target: " + event.target.dataset['url']);
-    this.setState({clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id']})
+    this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'] })
 
     this.showModal("zoom");
   }
@@ -145,46 +144,41 @@ class App extends Component {
   // Meme Generator //
 
   uploadWidget = () => {
-    window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags:['meme']},
-    function(error, result) {
-      console.log('************* uploading... *************')
+    window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags: ['meme'] },
+      function (error, result) {
+        console.log('************* uploading... *************')
         if (result.event === "success") {
           console.log(`Success! added to your Database -- ${result.info.url}`)
           axios.post('/api/putData', {
             meme: result.info.url
           })
-          .then((result) => {
-           let newMeme = result.config.data; 
-            let tempArray = [];
-            tempArray.push(newMeme);
-            this.setState({ memeArray: tempArray });
-          })
-          .then(() => {
-            this.getDataFromDB();
-          })
-          .catch((err) => {
-            if(err) throw err;
-          });
+            .then((result) => {
+              let newMeme = result.config.data;
+              let tempArray = [];
+              tempArray.push(newMeme);
+              this.setState({ memeArray: tempArray });
+            })
+            .then(() => {
+              this.getDataFromDB();
+            })
+            .catch((err) => {
+              if (err) throw err;
+            });
         }
-    }.bind(this));
-    
+      }.bind(this));
+
   }
 
 
 
   render() {
     return (
- <div className="wrapper">
-            <div className="upload">
-                <button onClick={this.uploadWidget} className="upload-button">
-                    Add Image
-                </button>
-            </div>
+      <div className="wrapper">
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
-        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl}/>
-        <Leaderboard displayLeaders={this.displayLeaders} attribute={this.state.leaderModal} hideModal={this.hideModal}/>
-        <Navbar showModal={this.showModal} />
-        <MemeGrid showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered}/>
+        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} />
+        <Leaderboard displayLeaders={this.displayLeaders} attribute={this.state.leaderModal} hideModal={this.hideModal} />
+        <Navbar showModal={this.showModal} uploadWidget={this.uploadWidget}/>
+        <MemeGrid showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered} />
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import AddButton from "../AddButton";
+import AddButton from "../CreateButton";
 
 function Navbar(props) {
     return (
@@ -26,9 +26,22 @@ function Navbar(props) {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <button className="button is-success" onClick={() => props.showModal("leader")}>Leaderboard</button>
+                            <button className="button is-warning" onClick={() => props.showModal("leader")}>
+                            <span className="icon">
+                                        <i className="fas fa-trophy"></i>
+                                    </span>
+                                    <span>Leaderboard</span>
+                            </button>
+                            {/* <div className="upload"> */}
+                                <button className="button is-link" onClick={props.uploadWidget}>
+                                    <span className="icon">
+                                        <i className="fas fa-upload"></i>
+                                    </span>
+                                    <span>Upload Meme</span>
+                                </button>
+                            {/* </div> */}
                             <AddButton showModal={props.showModal} />
-                            <a className="button is-link"><strong>Log in</strong></a>
+                            <a className="button is-danger"><strong>Log in</strong></a>
                         </div>
                     </div>
                 </div>
