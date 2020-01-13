@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import axios from 'axios';
-import { render } from 'react-dom';
 // import { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
@@ -15,12 +13,13 @@ class App extends Component {
   state = {
     zoomModal: "",
     generatorModal: "",
-    hovered: false,
-    memeClicked: "",
+    leaderModal: "",
     // Initializing state for Meme DB - GC
     memeArray: [],
     meme: null,
-    memeGallery: []
+    memeGallery: [],
+    clickedMemeUrl: "",
+    clickedMemeId: ""
   }
 
   componentDidMount() {
@@ -91,11 +90,11 @@ class App extends Component {
     for (let i = 0; i < 3; i++) {
       leaders.push(
         <div className="lead-meme" key={i}>
-          <img src="https://picsum.photos/300/300" alt="meme"></img>
-          <span>
+          <img src="" alt="meme"></img>
+          <div>
             <i className="fas fa-crown"></i>
-            <h1>{i + 1}</h1>
-          </span>
+            <span>{i + 1}</span>
+          </div>
         </div>
       )
     }
@@ -103,23 +102,44 @@ class App extends Component {
   }
 
   showModal = (modal) => {
-    if (modal === "zoom") {
-      this.setState({ zoomModal: "is-active" });
-    } else {
-      this.setState({ generatorModal: "is-active" });
+    switch(modal) {
+      case "zoom":
+        this.setState({ zoomModal: "is-active" });
+        break;
+      case "generator":
+        this.setState({ generatorModal: "is-active" });
+        break;
+      case "leader":
+        this.setState({leaderModal : "is-active"})
+        break;
     }
   }
 
   hideModal = (modal) => {
-    if (modal === "zoom") {
-      this.setState({ zoomModal: "" });
-    } else {
-      this.setState({ generatorModal: "" });
+    switch(modal) {
+      case "zoom":
+        this.setState({ zoomModal: "" });
+        break;
+      case "generator":
+        this.setState({ generatorModal: "" });
+        break;
+      case "leader":
+        this.setState({leaderModal : ""})
+        break;
     }
   }
 
-  displayLikeOnHover = () => {
-    this.setState({ hovered: true});
+  likeMeme = () => {
+    var thisId = this.attr("data-id");
+    console.log(thisId);
+  }
+
+  showZoomedMeme = (event) => {
+    // console.log("event target: " + event.target.dataset['id']);
+    // console.log("event target: " + event.target.dataset['url']);
+    this.setState({clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id']})
+
+    this.showModal("zoom");
   }
 
   // Meme Generator //
@@ -161,10 +181,10 @@ class App extends Component {
                 </button>
             </div>
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
-        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} memeClicked={this.state.memeClicked}/>
+        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl}/>
+        <Leaderboard displayLeaders={this.displayLeaders} attribute={this.state.leaderModal} hideModal={this.hideModal}/>
         <Navbar showModal={this.showModal} />
-        <Leaderboard displayLeaders={this.displayLeaders}/>
-        <MemeGrid memeGallery={this.state.memeGallery} createGrid={this.createGrid} hovered={this.state.hovered}/>
+        <MemeGrid showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered}/>
       </div>
     );
   }
