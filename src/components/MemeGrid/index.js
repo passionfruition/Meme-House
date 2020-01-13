@@ -9,7 +9,7 @@ function MemeGrid(props) {
           <h1 className="subtitle">Hmm.. Try a different time</h1> : 
           // Else display photo set
           props.memeGallery.map(meme => (<div className="meme" key={meme._id}>
-          <img alt="meme" data-id={meme._id} data-url={meme.meme} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}></img>
+          <img alt="meme" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}></img>
           <div className="like-button">
             <button className="button"><i className="fas fa-thumbs-up"></i></button>
           </div>

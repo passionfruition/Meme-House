@@ -19,7 +19,8 @@ class App extends Component {
     meme: null,
     memeGallery: [],
     clickedMemeUrl: "",
-    clickedMemeId: ""
+    clickedMemeId: "",
+    clickedMemeLikes: 0
   }
 
   componentDidMount() {
@@ -130,13 +131,21 @@ class App extends Component {
   }
 
   likeMeme = () => {
-
+    // Doesn't have a restriction on how many times a user can like a picture, need to implement
+    let newLikes = parseInt(this.state.clickedMemeLikes) + 1
+    axios.post('http://localhost:3001/updateData', {
+      id: this.state.clickedMemeId,
+      update: newLikes
+    })
+    .then((res) => console.log(res))
+    .then(this.setState({ clickedMemeLikes: newLikes }))
+    .then(this.getDataFromDB())
   }
 
   showZoomedMeme = (event) => {
     // console.log("event target: " + event.target.dataset['id']);
     // console.log("event target: " + event.target.dataset['url']);
-    this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'] })
+    this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'], clickedMemeLikes: event.target.dataset['likes'] })
 
     this.showModal("zoom");
   }
@@ -175,7 +184,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
-        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} />
+        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
         <Leaderboard displayLeaders={this.displayLeaders} attribute={this.state.leaderModal} hideModal={this.hideModal} />
         <Navbar showModal={this.showModal} uploadWidget={this.uploadWidget}/>
         <div className="columns is-centered">

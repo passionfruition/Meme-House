@@ -59,11 +59,16 @@ router.get('/getData', (req, res) => {
 
 // this is our update method
 // this method overwrites existing data in our database
-router.post('/updateData', (req, res) => {
+app.post('/updateData', (req, res) => {
   const { id, update } = req.body;
-  Data.findByIdAndUpdate(id, update, (err) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
+  Data.findOneAndUpdate(
+    { _id: id }, 
+    { likes: update })
+  .then(function(data){
+    res.json(data);
+  })
+  .catch(function(err){
+    res.json(err);
   });
 });
 
