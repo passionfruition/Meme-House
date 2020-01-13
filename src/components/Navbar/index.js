@@ -7,7 +7,7 @@ function Navbar(props) {
             <div className="navbar-brand">
                 <a className="navbar-item" href="google.com">
                     <img src="https://image.freepik.com/free-vector/king-crown-cartoon_18591-37864.jpg" className="logo" alt="logo" width="28" height="28"></img>
-                    <h1 className="subtitle">Meme House</h1>
+                    <h1 className="title app-name">meme house</h1>
                 </a>
 
                 <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">

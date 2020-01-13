@@ -1,5 +1,13 @@
 
 
+.navbar {
+  width: 100%;
+}
+
+.app-name {
+  font-family: 'Baloo Bhai', cursive;
+}
+
 .zoom-modal {
   text-align: center;
 }
@@ -67,5 +75,9 @@
 @media only screen and (min-width: 800px) {
   .meme-wrapper {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .navbar {
+    padding-left: 7%;
+    padding-right: 8.5%;
   }
 }
