@@ -5,8 +5,8 @@ function Navbar(props) {
     return (
         <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="google.com">
-                    <img src="https://image.freepik.com/free-vector/king-crown-cartoon_18591-37864.jpg" className="logo" alt="logo" width="28" height="28"></img>
+                <a className="navbar-item" href="">
+                    <img src="https://images.onlinelabels.com/images/clip-art/pitr/pitr_Home_icon.png" className="logo" alt="logo" width="28" height="28"></img>
                     <h1 className="title app-name">meme house</h1>
                 </a>
 
