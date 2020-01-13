@@ -1,5 +1,6 @@
 import * as React from 'react';
 import domtoimage from 'dom-to-image-more';
+import { saveAs } from 'file-saver';
 import './style.css';
 
 function MemeGenerator() {
@@ -9,7 +10,7 @@ function MemeGenerator() {
   const [activeImage, setActiveImage] = React.useState('');
   const [textTop, setTextTop] = React.useState('');
   const [textBottom, setTextBottom] = React.useState('');
-  // const [isMemeGenerated, setIsMemeGenerated] = React.useState(false);
+  const [isMemeGenerated, setIsMemeGenerated] = React.useState(false);
   // let imageNames = images.map((data) => <option className="is-clipped" value={data.name} key={data.name}>{data.name}</option>);
   
 
@@ -53,7 +54,7 @@ function MemeGenerator() {
       // Save image
       window.saveAs(dataUrl, 'meme.png');
       // Update state for isMemeGenerated
-      // setIsMemeGenerated(true)
+      setIsMemeGenerated(true)
     })
   }
 

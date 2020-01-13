@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 //     });
 // });
 app.get('/memes', function(req, res) {
-  Data.find({}, function(err, memes) {
+  Data.find({}, null, {sort: '-createdAt'}, function(err, memes) {
     if(err) {
       res.send("errrror")
     }
