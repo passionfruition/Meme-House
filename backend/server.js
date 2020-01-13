@@ -28,6 +28,26 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Route for getting all Memes from the db
+// router.get("/memes", function(req, res) {
+//   Data.find({})
+//     .then(function(dbMeme) {
+//       res.json(dbMeme);
+//     })
+//     .catch(function(err) {
+//       res.json(err);
+//     });
+// });
+app.get('/memes', function(req, res) {
+  Data.find({}, null, {sort: '-createdAt'}, function(err, memes) {
+    if(err) {
+      res.send("errrror")
+    }
+    console.log("Success")
+    res.json(memes);
+  })
+})
+
 // this is our get method
 // this method fetches all available data in our database
 router.get('/getData', (req, res) => {
@@ -39,11 +59,16 @@ router.get('/getData', (req, res) => {
 
 // this is our update method
 // this method overwrites existing data in our database
-router.post('/updateData', (req, res) => {
+app.post('/updateData', (req, res) => {
   const { id, update } = req.body;
-  Data.findByIdAndUpdate(id, update, (err) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
+  Data.findOneAndUpdate(
+    { _id: id }, 
+    { likes: update })
+  .then(function(data){
+    res.json(data);
+  })
+  .catch(function(err){
+    res.json(err);
   });
 });
 

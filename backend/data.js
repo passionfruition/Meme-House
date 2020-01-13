@@ -7,6 +7,11 @@ const DataSchema = new Schema(
         meme: {
             type: String,
             required: true
+        },
+        likes: {
+            type: Number,
+            required: true,
+            default: 0
         }
     },
     {
@@ -15,4 +20,4 @@ const DataSchema = new Schema(
 );
 
 // export new Schema to modify using Node.js
-module.exports = mongoose.model('meme', DataSchema);
+module.exports = mongoose.model('Meme', DataSchema);
