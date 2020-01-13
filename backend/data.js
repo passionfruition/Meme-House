@@ -7,6 +7,11 @@ const DataSchema = new Schema(
         meme: {
             type: String,
             required: true
+        },
+        likes: {
+            type: Number,
+            required: true,
+            default: 0
         }
     },
     {
