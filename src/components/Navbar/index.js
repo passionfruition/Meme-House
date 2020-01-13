@@ -1,6 +1,5 @@
 import React from 'react';
 import AddButton from "../AddButton";
-import Leaderboard from '../Leaderboard';
 
 function Navbar(props) {
     return (

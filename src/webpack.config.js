@@ -7,8 +7,9 @@ var APP_DIR = path.resolve(__dirname, 'src');
 var config = {
     entry: APP_DIR + '/index.jsx',
     output: {
-        path: BUILD_DIR,
-        filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'bundle.js'
     },
     module : {
         loaders : [

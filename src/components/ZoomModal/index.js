@@ -7,7 +7,7 @@ function ZoomModal(props) {
             <div className="modal-content has-background-white">
                 <img src={props.memeClicked} alt="meme"></img>
                 <div className="like-button">
-                    <a className="button"><i className="fas fa-thumbs-up"></i></a>
+                    <button className="button"><i className="fas fa-thumbs-up"></i></button>
                 </div>
                 <button className="modal-close is-large" onClick={() => props.hideModal("zoom")} aria-label="close"></button>
             </div>

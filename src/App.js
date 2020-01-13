@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+// import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import axios from 'axios';
-import { render } from 'react-dom';
-// import { useState } from 'react';
-// import logo from './logo.svg';
 import './App.css';
-import MemeGrid from '../src/components/MemeGrid/index';
-import Navbar from '../src/components/Navbar/index';
-import Leaderboard from '../src/components/Leaderboard/index';
-import MemeModal from '../src/components/MemeModal/index';
-import ZoomModal from '../src/components/ZoomModal/index';
-import axios from "axios";
+import MemeGrid from '../src/components/MemeGrid';
+import Navbar from '../src/components/Navbar';
+import Leaderboard from '../src/components/Leaderboard';
+import MemeModal from '../src/components/MemeModal';
+import ZoomModal from '../src/components/ZoomModal';
 
 class App extends Component {
   state = {
     zoomModal: "",
     generatorModal: "",
-    leaderModal: "",
     hovered: false,
     memeClicked: "https://picsum.photos/800/400",
     // Initializing state for Meme DB - GC
     memeArray: [],
-    meme: null
+    meme: null,
+    data: null
   }
 
   componentDidMount() {
@@ -43,10 +39,12 @@ class App extends Component {
 
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
-    fetch('/api/getData')
-      .then((data) => data.json())
-      .then((res) => this.setState({ data: res.data })
-      ).then(console.log(this.state.data));
+    console.log("Try to get data from db")
+    axios.get('http://localhost:3001/memes/')
+      .then((res) => this.setState({ memeArray: res.data}))
+    // .then(console.log(this.state.memeArray))
+    // .then((res) => this.setState({ data: res.data })
+    // ).then(console.log(this.state.data));
   };
 
   //put method that uses our backend api to create new entry/upload into DB - GC
@@ -61,17 +59,17 @@ class App extends Component {
       id: idToBeAdded,
       meme: memeUpload
     })
-    .then((result) => {
-     let newMeme = result.data.data 
-      console.log(result.data.data)
-      let tempArray = this.state.data;
-      tempArray.push(newMeme);
-      this.setState({ data: tempArray });
-    })
-    .catch((err) => {
-      if(err) 
-      console.log(err);
-    });
+      .then((result) => {
+        let newMeme = result.data.data
+        console.log(result.data.data)
+        let tempArray = this.state.data;
+        tempArray.push(newMeme);
+        this.setState({ data: tempArray });
+      })
+      .catch((err) => {
+        if (err)
+          console.log(err);
+      });
   };
 
   createGrid = () => {
@@ -81,7 +79,7 @@ class App extends Component {
         <div className="meme" key={i}>
           <img alt="meme" src="https://picsum.photos/300/300" onClick={() => this.showModal("zoom")}></img>
           <div className="like-button">
-            <a className="button"><i className="fas fa-thumbs-up"></i></a>
+            <button className="button"><i className="fas fa-thumbs-up"></i></button>
           </div>
 
         </div>);
@@ -140,49 +138,52 @@ class App extends Component {
   // Meme Generator //
 
   uploadWidget = () => {
-    window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags:['meme']},
-    function(error, result) {
-      console.log('************* uploading... *************')
+    window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags: ['meme'] },
+      function (error, result) {
+        console.log('************* uploading... *************')
         if (result.event === "success") {
           console.log(`Success! added to your Database -- ${result.info.url}`)
           axios.post('/api/putData', {
             meme: result.info.url
           })
-          .then((result) => {
-           let newMeme = result.config.data; 
-            let tempArray = [];
-            tempArray.push(newMeme);
-            this.setState({ memeArray: tempArray });
-          })
-          .catch((err) => {
-            if(err) throw err;
-          });
+            .then((result) => {
+              let newMeme = result.config.data;
+
+              let tempArray = this.state.memeArray;
+              tempArray.push(newMeme);
+              this.setState({ memeArray: tempArray });
+              console.log("meme array");
+              console.log(this.state.memeArray);
+            })
+            .catch((err) => {
+              if (err) throw err;
+            });
         }
-    }.bind(this));
+      }.bind(this));
   }
 
 
 
   render() {
     return (
- <div className="wrapper">
-            <div className="upload">
-                <button onClick={this.uploadWidget} className="upload-button">
-                    Add Image
+      <div className="wrapper">
+        <div className="upload">
+          <button onClick={this.uploadWidget} className="upload-button">
+            Add Image
                 </button>
-            </div>
+            <button onClick={() => this.getDataFromDB()} className="button">
+              DB
+            </button>
+        </div>
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
         <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} memeClicked={this.state.memeClicked} />
         <Leaderboard displayLeaders={this.displayLeaders} attribute={this.state.leaderModal} hideModal={this.hideModal} />
-        <Navbar showModal={this.showModal} displayLeaders={this.displayLeaders} />
-
+        <Navbar showModal={this.showModal} />
         <div className="columns is-centered">
-          <div className="column is-9">
-            <MemeGrid createGrid={this.createGrid} hovered={this.state.hovered} />
+          <div className="column is-10">
+          <MemeGrid memeArray={this.state.memeArray} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered} />
+
           </div>
-          {/* <div className="column is-2">
-            <Leaderboard displayLeaders={this.displayLeaders} />
-          </div>  */}
         </div>
       </div>
     );
