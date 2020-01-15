@@ -92,7 +92,7 @@ function MemeGenerator() {
                 <i className="fas fa-upload"></i>
               </span>
               <span className="file-label">
-                Upload image
+                Upload
               </span>
               <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
             </label>
@@ -102,7 +102,7 @@ function MemeGenerator() {
               type="button"
               onClick={handleImageChange}
             >
-              Randomize meme
+              Randomize
             </button>
             {/* Download Meme Button */}
             <button
@@ -110,7 +110,7 @@ function MemeGenerator() {
               type="button"
               onClick={handleMemeGeneration}
             >
-              Generate meme
+              Generate
             </button>
           </div>
         </form>
