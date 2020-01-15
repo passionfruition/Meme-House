@@ -59,68 +59,72 @@ function MemeGenerator() {
   }, [])
 
   return (
-    <div>
-      <form className="form">
-        <div className="formInputs">
-          {/* Top Text Input */}
-          <input
-            name="text-top"
-            placeholder="Top Text"
-            type="text"
-            value={textTop}
-            onChange={handleInputChange}
-          />
-          {/* Bottom Text Input */}
-          <input
-            name="text-bottom"
-            placeholder="Bottom Text"
-            type="text"
-            value={textBottom}
-            onChange={handleInputChange}
-          />
-        </div>
+    <div className="columns">
+      <div className="column">
+        <form className="form">
+          <div className="formInputs">
+            {/* Top Text Input */}
+            <input
+              name="text-top"
+              placeholder="Top Text"
+              type="text"
+              value={textTop}
+              onChange={handleInputChange}
+            />
+            {/* Bottom Text Input */}
+            <input
+              name="text-bottom"
+              placeholder="Bottom Text"
+              type="text"
+              value={textBottom}
+              onChange={handleInputChange}
+            />
+          </div>
 
-        <div className="formButtons">
-          {/* Upload Meme Button */}
-          <label
-            className="button is-link"
-            htmlFor="fileInput"
-          >
-            <span className="file-icon">
-              <i className="fas fa-upload"></i>
-            </span>
-            <span className="file-label">
-              Upload image
-            </span>
-            <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
-          </label>
-          {/* Randomize Meme Button */}
-          <button
-            className="button is-danger"
-            type="button"
-            onClick={handleImageChange}
-          >
-            Randomize meme
-          </button>
-          {/* Download Meme Button */}
-          <button
-            className="button is-success"
-            type="button"
-            onClick={handleMemeGeneration}
-          >
-            Generate meme
-          </button>
-        </div>
-      </form>
+          <div className="formButtons">
+            {/* Upload Meme Button */}
+            <label
+              className="button is-link"
+              htmlFor="fileInput"
+            >
+              <span className="file-icon">
+                <i className="fas fa-upload"></i>
+              </span>
+              <span className="file-label">
+                Upload image
+              </span>
+              <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
+            </label>
+            {/* Randomize Meme Button */}
+            <button
+              className="button is-danger"
+              type="button"
+              onClick={handleImageChange}
+            >
+              Randomize meme
+            </button>
+            {/* Download Meme Button */}
+            <button
+              className="button is-success"
+              type="button"
+              onClick={handleMemeGeneration}
+            >
+              Generate meme
+            </button>
+          </div>
+        </form>
+      </div>
 
-      {/*Content Div */}
-      <div className="content" ref={contentContainerRef}>
-        {/* Image preview */}
-        <img src={activeImage} alt="Meme" />
-        {/* Text at the top */}
-        <h1 className="textTop">{textTop}</h1>
-        {/* Text at the bottom */}
-        <h1 className="textBottom">{textBottom}</h1>
+      <div className="column">
+        {/*Content Div */}
+        <div className="content" ref={contentContainerRef}>
+          {/* Image preview */}
+          <img src={activeImage} alt="Meme" />
+          {/* Text at the top */}
+          <h1 className="textTop">{textTop}</h1>
+          {/* Text at the bottom */}
+          <h1 className="textBottom">{textBottom}</h1>
+        </div>
       </div>
     </div>
   )
