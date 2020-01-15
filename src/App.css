@@ -18,13 +18,9 @@
   display: none;
 }
 
-.meme:hover .like-button {
+/* .meme:hover .like-button {
   display:block;
-}
-
-.fa-crown {
-  color: gold;
-}
+} */
 
 
 .logo {

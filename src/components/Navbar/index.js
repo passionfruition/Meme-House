@@ -31,7 +31,7 @@ function Navbar(props) {
                         <div className="buttons">
                             <ReactTooltip place="bottom" effect="solid" />
                             <UploadButton uploadWidget={props.uploadWidget} />
-                            <CreateButton showModal={props.showModal} />
+                            <CreateButton toggleModal={props.toggleModal} />
                             <LogInButton />
                         </div>
                     </div>
