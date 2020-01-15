@@ -15,10 +15,13 @@ class App extends Component {
     zoomModal: "",
     generatorModal: "",
     leaderModal: "",
+    
     // Initializing state for Meme DB - GC
     memeArray: [],
     meme: null,
+
     memeGallery: [],
+    memeLeaders: [],
     clickedMemeUrl: "",
     clickedMemeId: "",
     clickedMemeLikes: 0
@@ -27,6 +30,7 @@ class App extends Component {
   componentDidMount() {
     // Getting Data from DB -GC
     this.getDataFromDB();
+    this.getLeadersFromDB();
     // Bulma mobile toggle
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
     if ($navbarBurgers.length > 0) {
@@ -43,9 +47,14 @@ class App extends Component {
 
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
-    axios.get('http://localhost:3001/memes/')
+    axios.get('http://localhost:3001/api/memes/')
       .then((res) => this.setState({ memeGallery: res.data }))
   };
+
+  getLeadersFromDB = () => {
+    axios.get('http://localhost:3001/api/leaders/')
+      .then((res) => this.setState({ memeLeaders: res.data }))
+  }
 
   //put method that uses our backend api to create new entry/upload into DB - GC
   putMemeInDB = (memeUpload) => {
@@ -71,37 +80,6 @@ class App extends Component {
           console.log(err);
       });
   };
-
-  createGrid = () => {
-    let grid = [];
-    for (let i = 0; i < 16; i++) {
-      grid.push(
-        <div className="meme" key={i}>
-          <img alt="meme" src="" onClick={() => this.showModal("zoom")}></img>
-          <div className="like-button">
-            <a className="button"><i className="fas fa-thumbs-up"></i></a>
-          </div>
-
-        </div>);
-    }
-    return grid;
-  }
-
-  displayLeaders = () => {
-    let leaders = [];
-    for (let i = 0; i < 7; i++) {
-      leaders.push(
-        <div className="lead-meme" key={i}>
-          <img src="" alt="meme"></img>
-          <div>
-            <i className="fas fa-crown"></i>
-            <span>{i + 1}</span>
-          </div>
-        </div>
-      )
-    }
-    return leaders;
-  }
 
   showModal = (modal) => {
     switch (modal) {
@@ -141,11 +119,10 @@ class App extends Component {
     .then((res) => console.log(res))
     .then(this.setState({ clickedMemeLikes: newLikes }))
     .then(this.getDataFromDB())
+    .then(this.getLeadersFromDB())
   }
 
   showZoomedMeme = (event) => {
-    // console.log("event target: " + event.target.dataset['id']);
-    // console.log("event target: " + event.target.dataset['url']);
     this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'], clickedMemeLikes: event.target.dataset['likes'] })
 
     this.showModal("zoom");
@@ -171,15 +148,15 @@ class App extends Component {
             .then(() => {
               this.getDataFromDB();
             })
+            .then(() => {
+              this.getLeadersFromDB();
+            })
             .catch((err) => {
               if (err) throw err;
             });
         }
       }.bind(this));
-
   }
-
-
 
   render() {
     return (
@@ -190,7 +167,7 @@ class App extends Component {
         <div className="columns is-two-thirds-widescreen is-centered">
           <div className="column is-2">
             <div className="aside">
-              <Leaderboard displayLeaders={this.displayLeaders} />
+              <Leaderboard displayLeaders={this.displayLeaders} memeLeaders={this.state.memeLeaders} />
               <FakeFooter />
             </div>
           </div>

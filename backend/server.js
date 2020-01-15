@@ -29,17 +29,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Route for getting all Memes from the db
-// router.get("/memes", function(req, res) {
-//   Data.find({})
-//     .then(function(dbMeme) {
-//       res.json(dbMeme);
-//     })
-//     .catch(function(err) {
-//       res.json(err);
-//     });
-// });
-app.get('/memes', function(req, res) {
+app.get('/api/memes', function(req, res) {
   Data.find({}, null, {sort: '-createdAt'}, function(err, memes) {
+    if(err) {
+      res.send("errrror")
+    }
+    console.log("Success")
+    res.json(memes);
+  })
+})
+
+app.get('/api/leaders', function(req, res) {
+  Data.find({}, null, {sort: '-likes'}, function(err, memes) {
     if(err) {
       res.send("errrror")
     }
@@ -101,9 +102,6 @@ router.post('/putData', (req, res) => {
     return res.json({ data });
   });
 });
-
-// append /api for our http requests
-app.use('/api', router);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
