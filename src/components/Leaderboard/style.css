@@ -3,14 +3,25 @@
 }
 .lead-meme {
     margin: 0 2px;
-    max-width: 250px;
 }
-
+.lead-meme-img {
+    height: 175px;
+    width: 175px;
+    object-fit: cover;
+}
 .leaderboard .fa-thumbs-up {
     margin-right: 3px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 680px) {
+    .lead-meme-img {
+        padding-right: 10px;
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
     .box {
         margin-top: 1rem;
     }
@@ -18,7 +29,11 @@
         white-space: nowrap;
         overflow-x: scroll;
         overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
     }
+    .scrolling-wrapper::-webkit-scrollbar {
+        display: none;
+      }
     .scrolling-wrapper .lead-meme {
         display: inline-block;
     }
