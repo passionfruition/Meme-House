@@ -3,6 +3,7 @@ import CreateButton from "../CreateButton";
 import UploadButton from "../UploadButton";
 import "../Navbar/style.css"
 import LogInButton from '../LogInButton';
+import ReactTooltip from 'react-tooltip';
 
 function Navbar(props) {
     return (
@@ -28,6 +29,7 @@ function Navbar(props) {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
+                            <ReactTooltip place="bottom" effect="solid" />
                             <UploadButton uploadWidget={props.uploadWidget} />
                             <CreateButton toggleModal={props.toggleModal} />
                             <LogInButton />
