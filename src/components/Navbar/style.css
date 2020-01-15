@@ -7,6 +7,11 @@
     font-family: 'Baloo Bhai', cursive;
 }
 
+.navbar-burger {
+    border: none;
+    background: transparent;
+}
+
 
 @media only screen and (min-width: 769px) {
     .navbar {

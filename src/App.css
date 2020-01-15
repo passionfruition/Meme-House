@@ -32,9 +32,15 @@
     margin-top: 3rem;
   }
   .aside {
-    top: 6.2rem;
+    top: 5rem;
     position: sticky;
     position: -webkit-sticky;
+  }
+}
+
+@media only screen and (max-width: 768) {
+  * {
+    overflow-x: hidden;
   }
 }
 

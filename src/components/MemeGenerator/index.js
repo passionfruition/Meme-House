@@ -1,8 +1,9 @@
 import * as React from 'react';
 import domtoimage from 'dom-to-image-more';
-import { saveAs } from 'file-saver';
 import FakeFooter from '../FakeFooter';
 import './style.css';
+// eslint-disable-next-line
+import { saveAs } from 'file-saver';
 
 function MemeGenerator() {
   let contentContainerRef = React.useRef(null)
@@ -11,7 +12,6 @@ function MemeGenerator() {
   const [activeImage, setActiveImage] = React.useState('');
   const [textTop, setTextTop] = React.useState('');
   const [textBottom, setTextBottom] = React.useState('');
-  const [isMemeGenerated, setIsMemeGenerated] = React.useState(false); 
 
   async function fetchImage() {
     // Get the memes
@@ -49,8 +49,6 @@ function MemeGenerator() {
     domtoimage.toPng(contentContainerRef.current).then((dataUrl) => {
       // Save image
       window.saveAs(dataUrl, 'meme.png');
-      // Update state for isMemeGenerated
-      setIsMemeGenerated(true)
     })
   }
 
