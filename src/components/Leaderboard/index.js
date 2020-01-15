@@ -12,10 +12,10 @@ function Leaderboard(props) {
                     // Else display leaders
                     props.memeLeaders.map(meme => (
                         <div className="lead-meme" key={meme._id}>
-                        <img src={meme.meme} key={meme._id} alt="meme"></img>
-                        <div>
-                            <i className="fas fa-thumbs-up"></i>
-                            <span>{meme.likes}</span>
+                            <img src={meme.meme} key={meme._id} alt="meme" className="lead-meme-img"></img>
+                            <div>
+                                <i className="fas fa-thumbs-up"></i>
+                                <span>{meme.likes}</span>
                         </div>
                     </div>))}
             </div>

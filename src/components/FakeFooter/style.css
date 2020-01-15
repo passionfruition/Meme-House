@@ -1,3 +1,7 @@
+.fake-footer-text {
+    margin-left: 15px;
+}
+
 .fake-footer-text, a {
     font-size: 0.8rem;
     color: rgb(170, 170, 170);

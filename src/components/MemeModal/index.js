@@ -6,7 +6,7 @@ function MemeModal(props) {
     return (
         <div id="generator" className="generator-modal modal">
             <div className="modal-background"></div>
-            <div className="modal-content has-background-white">
+            <div className="modal-content has-background-white meme-gen-container">
                 <header className="modal-card-head">
                     <p className="modal-card-title">Create a Meme</p>
                 <button className="delete" onClick={() => props.toggleModal("generator")} aria-label="close"></button>

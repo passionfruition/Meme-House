@@ -15,7 +15,6 @@ class App extends Component {
     // Initializing state for Meme DB - GC
     memeArray: [],
     meme: null,
-
     memeGallery: [],
     memeLeaders: [],
     clickedMemeUrl: "",
@@ -136,14 +135,14 @@ class App extends Component {
         <MemeModal toggleModal={this.toggleModal} />
         <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
         <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
-        <div className="columns is-two-thirds-widescreen is-centered">
-          <div className="column is-2">
+        <div className="columns is-desktop is-centered">
+          <div className="column is-2-desktop">
             <div className="aside">
               <Leaderboard memeLeaders={this.state.memeLeaders} />
               <FakeFooter />
             </div>
           </div>
-          <div className="column is-6">
+          <div className="column is-6-desktop ">
             <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} toggleModal={this.toggleModal}/>
           </div>
         </div>

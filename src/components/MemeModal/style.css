@@ -1,18 +1,11 @@
 .modal-content {
-    max-height: 90vh;
+    max-height: 80vh;
     border-radius: 5px;
     box-shadow: 0 .5em 1em rgba(10,10,10,.7),0 0 0 1px rgba(10,10,10,.02);
 }
 
 .modal-background {
-    background-color: rgb(110, 130, 156);
-}
-
-.generator-modal img {
-    width: 100%;
-    max-height: 500px;
-    height: auto;
-    object-fit: contain;
+    background-color: rgba(110, 130, 156, .9);
 }
 
 .content {
@@ -23,9 +16,9 @@
 }
 
 @media only screen and (min-width: 769px) { 
-    .modal-content {
+    .meme-gen-container {
         margin: 0 auto;
-        width: 65%;
-        height: calc(100vh - 5rem);
+        width: auto;
+        object-fit: contain;
     }
 }
