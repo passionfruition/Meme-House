@@ -8,7 +8,7 @@
 }
 
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 769px) {
     .navbar {
         width: 66%;
     }

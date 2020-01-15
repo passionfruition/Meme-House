@@ -9,7 +9,7 @@
     max-width: 250px;
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 768px) {
     .box {
         margin-top: 0;
     }

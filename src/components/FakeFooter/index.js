@@ -3,7 +3,7 @@ import './style.css';
 
 function FakeFooter() {
     return(
-        <div className='columns'>
+        <div className='columns is-hidden-mobile'>
             <div className='column fake-footer-text'>
                 <a href="https://github.com/madeleineprak/Meme-House">GitHub</a>
                 <br/>
