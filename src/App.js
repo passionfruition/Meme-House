@@ -8,6 +8,7 @@ import Navbar from '../src/components/Navbar';
 import Leaderboard from '../src/components/Leaderboard';
 import MemeModal from '../src/components/MemeModal';
 import ZoomModal from '../src/components/ZoomModal';
+import FakeFooter from '../src/components/FakeFooter';
 
 class App extends Component {
   state = {
@@ -190,6 +191,7 @@ class App extends Component {
         <div className="columns is-two-thirds-widescreen is-centered">
           <div className="column is-2">
             <Leaderboard displayLeaders={this.displayLeaders} />
+            <FakeFooter />
           </div>
           <div className="column is-6">
             <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered} />

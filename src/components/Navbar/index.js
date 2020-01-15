@@ -2,6 +2,7 @@ import React from 'react';
 import CreateButton from "../CreateButton";
 import UploadButton from "../UploadButton";
 import "../Navbar/style.css"
+import LogInButton from '../LogInButton';
 
 function Navbar(props) {
     return (
@@ -29,7 +30,7 @@ function Navbar(props) {
                         <div className="buttons">
                             <UploadButton uploadWidget={props.uploadWidget} />
                             <CreateButton showModal={props.showModal} />
-                            <a className="button is-danger"><strong>Log in</strong></a>
+                            <LogInButton />
                         </div>
                     </div>
                 </div>

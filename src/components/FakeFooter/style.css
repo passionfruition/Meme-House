@@ -1,0 +1,8 @@
+.fake-footer-text, a {
+    font-size: 0.8rem;
+    color: rgb(170, 170, 170);
+}
+
+.fake-footer-text a:link, .fake-footer-text a:visited, .fake-footer-text a:hover, .fake-footer-text a:active {
+    text-decoration: none;
+}
