@@ -133,18 +133,18 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <MemeModal attribute={this.state.generatorModal} toggleModal={this.toggleModal} />
-        <ZoomModal attribute={this.state.Modal} toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
+        <MemeModal toggleModal={this.toggleModal} />
+        <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
         <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
         <div className="columns is-two-thirds-widescreen is-centered">
           <div className="column is-2">
             <div className="aside">
-              <Leaderboard displayLeaders={this.displayLeaders} memeLeaders={this.state.memeLeaders} />
+              <Leaderboard memeLeaders={this.state.memeLeaders} />
               <FakeFooter />
             </div>
           </div>
           <div className="column is-6">
-            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} toggleModal={this.toggleModal} hovered={this.state.hovered} />
+            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} toggleModal={this.toggleModal}/>
           </div>
         </div>
       </div>
