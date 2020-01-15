@@ -14,7 +14,7 @@ function Leaderboard(props) {
                         <div className="lead-meme" key={meme._id}>
                         <img src={meme.meme} key={meme._id} alt="meme"></img>
                         <div>
-                            <i className="fas fa-crown"></i>
+                            <i className="fas fa-thumbs-up"></i>
                             <span>{meme.likes}</span>
                         </div>
                     </div>))}

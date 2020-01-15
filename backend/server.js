@@ -40,7 +40,7 @@ app.get('/api/memes', function(req, res) {
 })
 
 app.get('/api/leaders', function(req, res) {
-  Data.find({}, null, {sort: '-likes'}, function(err, memes) {
+  Data.find({}, null, {sort: '-likes', limit: 5}, function(err, memes) {
     if(err) {
       res.send("errrror")
     }
