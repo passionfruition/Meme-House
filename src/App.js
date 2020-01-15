@@ -187,11 +187,12 @@ class App extends Component {
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
         <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
         <Navbar showModal={this.showModal} uploadWidget={this.uploadWidget} />
-        <hr></hr>
         <div className="columns is-two-thirds-widescreen is-centered">
           <div className="column is-2">
-            <Leaderboard displayLeaders={this.displayLeaders} />
-            <FakeFooter />
+            <div className="aside">
+              <Leaderboard displayLeaders={this.displayLeaders} />
+              <FakeFooter />
+            </div>
           </div>
           <div className="column is-6">
             <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered} />

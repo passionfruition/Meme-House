@@ -1,6 +1,6 @@
 .navbar {
-    margin:0 auto; 
-    padding-top: 10px;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+    padding: 10px 0;
 }
 
 .app-name {
@@ -10,8 +10,10 @@
 
 @media only screen and (min-width: 769px) {
     .navbar {
-        width: 66%;
+        padding-left: 15rem;
+        padding-right: 15rem;
     }
+
 }
 
 @media only screen and (max-width: 360px) {

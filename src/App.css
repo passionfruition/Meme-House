@@ -1,5 +1,5 @@
-.column {
-  margin-top: 5px;
+.columns .is-6{
+  padding: 1rem 0.75rem;
 }
 
 .zoom-modal {
@@ -35,12 +35,14 @@
   object-fit: contain;
 }
 
-@media only screen and (max-width: 768px) {
-  hr {
-    padding-bottom: 0;
-  }
+@media only screen and (min-width: 768px) {
   .wrapper {
-    margin-top: -40px;
+    margin-top: 3rem;
+  }
+  .aside {
+    top: 6.2rem;
+    position: sticky;
+    position: -webkit-sticky;
   }
 }
 
