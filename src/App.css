@@ -1,26 +1,5 @@
-
-
-.navbar {
-  width: 100%;
-}
-
-.app-name {
-  font-family: 'Baloo Bhai', cursive;
-}
-
-.zoom-modal {
-  text-align: center;
-}
-
-.meme-wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
-}
-
-.meme-wrapper img {
-  width: 100%;
-  object-fit: cover;  
+.columns .is-6{
+  padding: 1rem 0.75rem;
 }
 
 .meme {
@@ -47,37 +26,19 @@
   color: gold;
 }
 
-.leaderboard-wrapper img {
-  object-fit: cover;
-}
-
-
-.leaderboard-wrapper .lead-meme {
-  margin: 5px;
-}
-
-.leader-modal {
-  overflow: hidden;
-}
 
 .logo {
   object-fit: contain;
 }
 
-/* Larger screens */
-@media only screen and (min-width: 550px) {
-  .meme-wrapper {
-    grid-template-columns: 1fr 1fr;
-    justify-content: space-around;
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    margin-top: 3rem;
+  }
+  .aside {
+    top: 6.2rem;
+    position: sticky;
+    position: -webkit-sticky;
   }
 }
 
-@media only screen and (min-width: 800px) {
-  .meme-wrapper {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  .navbar {
-    padding-left: 8%;
-    padding-right: 8%;
-  }
-}

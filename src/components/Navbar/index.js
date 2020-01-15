@@ -1,15 +1,17 @@
 import React from 'react';
-import AddButton from "../CreateButton";
+import CreateButton from "../CreateButton";
+import UploadButton from "../UploadButton";
+import "../Navbar/style.css"
+import LogInButton from '../LogInButton';
 
 function Navbar(props) {
     return (
-        <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="">
                     <img src="https://images.onlinelabels.com/images/clip-art/pitr/pitr_Home_icon.png" className="logo" alt="logo" width="28" height="28"></img>
                     <h1 className="title app-name">meme house</h1>
                 </a>
-
                 <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -26,22 +28,9 @@ function Navbar(props) {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <button className="button is-warning" onClick={() => props.showModal("leader")}>
-                            <span className="icon">
-                                        <i className="fas fa-trophy"></i>
-                                    </span>
-                                    <span>Leaderboard</span>
-                            </button>
-                            {/* <div className="upload"> */}
-                                <button className="button is-link" onClick={props.uploadWidget}>
-                                    <span className="icon">
-                                        <i className="fas fa-upload"></i>
-                                    </span>
-                                    <span>Upload Meme</span>
-                                </button>
-                            {/* </div> */}
-                            <AddButton showModal={props.showModal} />
-                            <a className="button is-danger"><strong>Log in</strong></a>
+                            <UploadButton uploadWidget={props.uploadWidget} />
+                            <CreateButton showModal={props.showModal} />
+                            <LogInButton />
                         </div>
                     </div>
                 </div>

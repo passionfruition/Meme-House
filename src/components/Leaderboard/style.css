@@ -1,0 +1,21 @@
+.box {
+    box-shadow: 0 .1em 0.3em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+}
+.lead-meme {
+    margin: 0 2px;
+    max-width: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+    .box {
+        margin-top: 1rem;
+    }
+    .scrolling-wrapper {
+        white-space: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    .scrolling-wrapper .lead-meme {
+        display: inline-block;
+    }
+}

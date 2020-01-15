@@ -1,0 +1,31 @@
+.modal-content {
+    max-height: 90vh;
+    border-radius: 5px;
+    box-shadow: 0 .5em 1em rgba(10,10,10,.7),0 0 0 1px rgba(10,10,10,.02);
+}
+
+.modal-background {
+    background-color: rgb(110, 130, 156);
+}
+
+.generator-modal img {
+    width: 100%;
+    max-height: 500px;
+    height: auto;
+    object-fit: contain;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+@media only screen and (min-width: 769px) { 
+    .modal-content {
+        margin: 0 auto;
+        width: 80%;
+        height: calc(100vh - 5rem);
+    }
+}
