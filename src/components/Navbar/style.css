@@ -1,6 +1,6 @@
 .navbar {
-    margin: 0 auto;
-    border: 1px solid purple;
+    margin:0 auto; 
+    padding-top: 10px;
 }
 
 .app-name {

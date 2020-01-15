@@ -42,7 +42,7 @@ class App extends Component {
 
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
-    axios.get('http://localhost:3001/memes/')
+    axios.get('/memes/')
       .then((res) => this.setState({ memeGallery: res.data }))
   };
 
@@ -133,7 +133,7 @@ class App extends Component {
   likeMeme = () => {
     // Doesn't have a restriction on how many times a user can like a picture, need to implement
     let newLikes = parseInt(this.state.clickedMemeLikes) + 1
-    axios.post('http://localhost:3001/updateData', {
+    axios.post('/updateData', {
       id: this.state.clickedMemeId,
       update: newLikes
     })
@@ -182,10 +182,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
         <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
         <Navbar showModal={this.showModal} uploadWidget={this.uploadWidget} />
+        <hr></hr>
         <div className="columns is-two-thirds-widescreen is-centered">
           <div className="column is-2">
             <Leaderboard displayLeaders={this.displayLeaders} />

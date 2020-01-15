@@ -35,3 +35,12 @@
   object-fit: contain;
 }
 
+@media only screen and (max-width: 360px) {
+  hr {
+    padding-bottom: 0;
+  }
+  .wrapper {
+    margin-top: -40px;
+  }
+}
+

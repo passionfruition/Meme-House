@@ -10,19 +10,14 @@ function MemeGenerator() {
   const [activeImage, setActiveImage] = React.useState('');
   const [textTop, setTextTop] = React.useState('');
   const [textBottom, setTextBottom] = React.useState('');
-  const [isMemeGenerated, setIsMemeGenerated] = React.useState(false);
-  // let imageNames = images.map((data) => <option className="is-clipped" value={data.name} key={data.name}>{data.name}</option>);
-  
+  const [isMemeGenerated, setIsMemeGenerated] = React.useState(false); 
 
   async function fetchImage() {
     // Get the memes
     const imgData = await fetch('https://api.imgflip.com/get_memes').then(res => res.json()).catch(err => console.error(err))
     const { memes } = await imgData.data
-
     // Update images state
     await setImages(memes)
-    // console.log(memes.map((data) => { return data.name} ));
-
     // Update activeImage state
     await setActiveImage(memes[16].url)
   }
@@ -116,13 +111,6 @@ function MemeGenerator() {
             Generate meme
           </button>
         </div>
-        {/* Meme Name Dropdown */}
-        {/* <div className="select is-small dropdown">
-            <select onClick={handleImageChange}>
-              <option>Pick a Meme</option>
-              {imageNames}
-            </select>
-        </div> */}
       </form>
 
       {/*Content Div */}
