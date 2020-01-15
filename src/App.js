@@ -88,7 +88,7 @@ class App extends Component {
 
   displayLeaders = () => {
     let leaders = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       leaders.push(
         <div className="lead-meme" key={i}>
           <img src="" alt="meme"></img>
@@ -150,7 +150,7 @@ class App extends Component {
     this.showModal("zoom");
   }
 
-  // Meme Generator //
+  // Cloudinary Upload Widget //
 
   uploadWidget = () => {
     window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags: ['meme'] },
@@ -182,14 +182,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="wrapper">
+      <div>
         <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
         <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
-        <Leaderboard displayLeaders={this.displayLeaders} attribute={this.state.leaderModal} hideModal={this.hideModal} />
-        <Navbar showModal={this.showModal} uploadWidget={this.uploadWidget}/>
-        <div className="columns is-centered">
-          <div className="column is-10">
-            <MemeGrid showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered} />
+        <Navbar showModal={this.showModal} uploadWidget={this.uploadWidget} />
+        <div className="columns is-two-thirds-widescreen is-centered">
+          <div className="column is-2">
+            <Leaderboard displayLeaders={this.displayLeaders} />
+          </div>
+          <div className="column is-6">
+            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered} />
           </div>
         </div>
       </div>

@@ -1,21 +1,13 @@
 import React from "react";
+import "./style.css";
 
 function Leaderboard(props) {
     return (
-        // <div className="leaderboard-wrapper">
-        //     {props.displayLeaders()}
-        // </div>
-        <div className={"leader-modal modal " + props.attribute}>
-        <div className="modal-background"></div>
-        <div className="modal-content has-background-white">
-            <header className="modal-card-head">
-                <p className="modal-card-title">Top Memes</p>
-                <button className="delete" onClick={() => props.hideModal("leader")} aria-label="close"></button>
-            </header>
-                <div className="leaderboard-wrapper columns">
+        <div>
+            <h1>Top Memes</h1>
+            <div className="scrolling-wrapper">
                     {props.displayLeaders()}
-                </div>
-        </div>
+            </div>
         </div>
         
     )

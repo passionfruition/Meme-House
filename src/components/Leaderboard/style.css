@@ -1,0 +1,15 @@
+.lead-meme {
+    margin: 0 2px;
+    max-width: 250px;
+}
+
+@media only screen and (max-width: 360px) {
+    .scrolling-wrapper {
+        white-space: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    .scrolling-wrapper .lead-meme {
+        display: inline-block;
+    }
+}

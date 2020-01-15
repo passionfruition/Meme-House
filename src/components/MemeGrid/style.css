@@ -1,0 +1,24 @@
+.meme-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+}
+  
+.meme-wrapper img {
+    width: 100%;
+    object-fit: cover;  
+}
+/* Larger screens */
+@media only screen and (min-width: 550px) {
+    .meme-wrapper {
+        border:1px solid red;
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-around;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .meme-wrapper {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
