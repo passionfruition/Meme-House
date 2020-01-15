@@ -4,5 +4,6 @@
 
 .image {
     margin: 0 auto;
-    max-width: 600px;
+    height: 80%;
+    height: auto;
 }

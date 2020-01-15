@@ -12,10 +12,6 @@ import FakeFooter from '../src/components/FakeFooter';
 
 class App extends Component {
   state = {
-    zoomModal: "",
-    generatorModal: "",
-    leaderModal: "",
-    
     // Initializing state for Meme DB - GC
     memeArray: [],
     meme: null,
@@ -81,32 +77,9 @@ class App extends Component {
       });
   };
 
-  showModal = (modal) => {
-    switch (modal) {
-      case "zoom":
-        this.setState({ zoomModal: "is-active" });
-        break;
-      case "generator":
-        this.setState({ generatorModal: "is-active" });
-        break;
-      case "leader":
-        this.setState({ leaderModal: "is-active" })
-        break;
-    }
-  }
-
-  hideModal = (modal) => {
-    switch (modal) {
-      case "zoom":
-        this.setState({ zoomModal: "" });
-        break;
-      case "generator":
-        this.setState({ generatorModal: "" });
-        break;
-      case "leader":
-        this.setState({ leaderModal: "" })
-        break;
-    }
+  toggleModal = (modal) => {
+      var element = document.getElementById(modal);
+      element.classList.toggle("is-active");
   }
 
   likeMeme = () => {
@@ -124,8 +97,7 @@ class App extends Component {
 
   showZoomedMeme = (event) => {
     this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'], clickedMemeLikes: event.target.dataset['likes'] })
-
-    this.showModal("zoom");
+    this.toggleModal("zoom");
   }
 
   // Cloudinary Upload Widget //
@@ -161,9 +133,9 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <MemeModal attribute={this.state.generatorModal} hideModal={this.hideModal} />
-        <ZoomModal attribute={this.state.zoomModal} hideModal={this.hideModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
-        <Navbar showModal={this.showModal} uploadWidget={this.uploadWidget} />
+        <MemeModal attribute={this.state.generatorModal} toggleModal={this.toggleModal} />
+        <ZoomModal attribute={this.state.Modal} toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
+        <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
         <div className="columns is-two-thirds-widescreen is-centered">
           <div className="column is-2">
             <div className="aside">
@@ -172,7 +144,7 @@ class App extends Component {
             </div>
           </div>
           <div className="column is-6">
-            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} showModal={this.showModal} hovered={this.state.hovered} />
+            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} createGrid={this.createGrid} toggleModal={this.toggleModal} hovered={this.state.hovered} />
           </div>
         </div>
       </div>

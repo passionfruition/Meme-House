@@ -29,7 +29,7 @@ function Navbar(props) {
                     <div className="navbar-item">
                         <div className="buttons">
                             <UploadButton uploadWidget={props.uploadWidget} />
-                            <CreateButton showModal={props.showModal} />
+                            <CreateButton toggleModal={props.toggleModal} />
                             <LogInButton />
                         </div>
                     </div>

@@ -3,16 +3,16 @@ import './style.css';
 
 function ZoomModal(props) {
     return (
-        <div className={"zoom-modal modal " + props.attribute}>
+        <div id="zoom" className="zoom-modal modal">
             <div className="modal-background"></div>
             <div className="modal-content has-background-white">
                 <p className="image">
                     <img src={props.clickedMemeUrl} alt="meme"></img>
                 </p>
                 <div className="like-button">
-                    <button data-id={props.clickedMemeId} onClick={() => props.likeMeme()} className="button"><i className="fas fa-thumbs-up"></i></button>
+                    <button data-id={props.clickedMemeId} onClick={() => props.likeMeme()} className="button like-button"><i className="fas fa-thumbs-up"></i></button>
                 </div>
-                <button className="modal-close is-large" onClick={() => props.hideModal("zoom")} aria-label="close"></button>
+                <button className="modal-close is-large" onClick={() => props.toggleModal("zoom")} aria-label="close"></button>
             </div>
         </div>
     )
