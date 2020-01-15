@@ -25,7 +25,7 @@
 @media only screen and (min-width: 769px) { 
     .modal-content {
         margin: 0 auto;
-        width: 80%;
+        width: 65%;
         height: calc(100vh - 5rem);
     }
 }
