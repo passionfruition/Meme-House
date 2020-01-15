@@ -43,7 +43,7 @@ class App extends Component {
 
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
-    axios.get('/memes/')
+    axios.get('http://localhost:3001/memes/')
       .then((res) => this.setState({ memeGallery: res.data }))
   };
 
@@ -89,7 +89,7 @@ class App extends Component {
 
   displayLeaders = () => {
     let leaders = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       leaders.push(
         <div className="lead-meme" key={i}>
           <img src="" alt="meme"></img>
@@ -134,7 +134,7 @@ class App extends Component {
   likeMeme = () => {
     // Doesn't have a restriction on how many times a user can like a picture, need to implement
     let newLikes = parseInt(this.state.clickedMemeLikes) + 1
-    axios.post('/updateData', {
+    axios.post('http://localhost:3001/updateData', {
       id: this.state.clickedMemeId,
       update: newLikes
     })

@@ -7,17 +7,9 @@
     font-family: 'Baloo Bhai', cursive;
 }
 
-
 @media only screen and (min-width: 769px) {
     .navbar {
         padding-left: 15rem;
         padding-right: 15rem;
-    }
-
-}
-
-@media only screen and (max-width: 360px) {
-    .navbar {
-        width: 100%;
     }
 }

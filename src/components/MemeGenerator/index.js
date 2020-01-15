@@ -1,6 +1,7 @@
 import * as React from 'react';
 import domtoimage from 'dom-to-image-more';
 import { saveAs } from 'file-saver';
+import FakeFooter from '../FakeFooter';
 import './style.css';
 
 function MemeGenerator() {
@@ -113,6 +114,8 @@ function MemeGenerator() {
             </button>
           </div>
         </form>
+        <hr/>
+        <FakeFooter />
       </div>
 
       <div className="column">
