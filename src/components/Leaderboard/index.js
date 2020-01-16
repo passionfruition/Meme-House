@@ -4,7 +4,7 @@ import "./style.css";
 function Leaderboard(props) {
     return (
         <div className="box leaderboard">
-            <h1>Top Memes</h1>
+            <h1 className="has-text-black-ter">Top Memes</h1>
             <div className="scrolling-wrapper">
                 {!props.memeLeaders[0] ?
                     // If invalid search term, return try again message

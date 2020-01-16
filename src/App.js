@@ -143,7 +143,7 @@ class App extends Component {
             </div>
           </div>
           <div className="column is-6-desktop ">
-            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} toggleModal={this.toggleModal}/>
+            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} toggleModal={this.toggleModal} clickedMemeUrl={this.clickedMemeLikes}/>
           </div>
         </div>
       </div>
