@@ -3,22 +3,27 @@ import './style.css'
 
 function MemeGrid(props) {
     return (
-        <div className="meme-wrapper">
-            {
-            !props.memeGallery[0] ? 
-          // If invalid search term, return try again message
-          <div><h1 className="subtitle">Hmm.. Try a different time</h1></div> : 
-          // Else display photo set
-          props.memeGallery.map(meme => (
-            <div className="meme box" key={meme._id}>
-              <img alt="meme" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}></img>
-              {/* <div className="overlay" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}> </div>*/}
-              <div className="is-unselectable is-overlay" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}> 
-                <span className="has-text-white like-count" onClick={(event) => props.showZoomedMeme(event)}><i className="fas fa-thumbs-up"></i> {meme.likes}</span>
+        <div>
+          <div className="meme-wrapper-header">
+            <p className="title">Meme Gallery</p>
+          </div>
+          <div className="meme-wrapper">
+              {
+              !props.memeGallery[0] ? 
+            // If invalid search term, return try again message
+            <div><h1 className="subtitle">Hmm.. Try a different time</h1></div> : 
+            // Else display photo set
+            props.memeGallery.map(meme => (
+              <div className="meme image is-square" key={meme._id}>
+                <img alt="meme" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}></img>
+                {/* <div className="overlay" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}> </div>*/}
+                <div className="is-unselectable is-overlay" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}> 
+                  <span className="has-text-white like-count" onClick={(event) => props.showZoomedMeme(event)}><i className="fas fa-thumbs-up"></i> {meme.likes}</span>
+                </div>
               </div>
-            </div>
-          ))}
-        {/* {props.createGrid()} */}
+            ))}
+          {/* {props.createGrid()} */}
+          </div>
         </div>
     )
 }

@@ -1,3 +1,11 @@
+.meme {
+    border: 1px solid rgb(230, 230, 230)
+}
+.meme-wrapper-header {
+    margin-top:-1.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.3rem;
+}
 .meme-wrapper {
     display: grid;
     grid-template-columns: 1fr;
@@ -16,8 +24,8 @@
 }
 .is-overlay .like-count {
     position: absolute;
-    top: 40%;
-    left: 40%;
+    top: 42%;
+    left: 42%;
 }
 /* Larger screens */
 @media only screen and (min-width: 550px) {
@@ -27,7 +35,10 @@
     }
 }
 @media only screen and (min-width: 800px) {
+    .meme-wrapper-header {
+        margin-top:0;
+    }
     .meme-wrapper {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
