@@ -51,31 +51,6 @@ class App extends Component {
       .then((res) => this.setState({ memeLeaders: res.data }))
   }
 
-  //put method that uses our backend api to create new entry/upload into DB - GC
-  putMemeInDB = (memeUpload) => {
-    let currentIds = this.state.data.map((data) => data.id);
-    let idToBeAdded = 0;
-    while (currentIds.includes(idToBeAdded)) {
-      ++idToBeAdded;
-    }
-
-    axios.post('/api/putData', {
-      id: idToBeAdded,
-      meme: memeUpload
-    })
-      .then((result) => {
-        let newMeme = result.data.data
-        console.log(result.data.data)
-        let tempArray = this.state.data;
-        tempArray.push(newMeme);
-        this.setState({ data: tempArray });
-      })
-      .catch((err) => {
-        if (err)
-          console.log(err);
-      });
-  };
-
   toggleModal = (modal) => {
       var element = document.getElementById(modal);
       element.classList.toggle("is-active");
@@ -105,6 +80,7 @@ class App extends Component {
     window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags: ['meme'] },
       function (error, result) {
         console.log('************* uploading... *************')
+        console.log(result)
         if (result.event === "success") {
           console.log(`Success! added to your Database -- ${result.info.url}`)
           axios.post('/api/putData', {
@@ -123,7 +99,7 @@ class App extends Component {
               this.getLeadersFromDB();
             })
             .catch((err) => {
-              if (err) throw err;
+              console.log(err);
             });
         }
       }.bind(this));
