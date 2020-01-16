@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'public');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-    entry: APP_DIR + '/index.jsx',
+    entry: APP_DIR + '/index.js',
     output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
@@ -14,7 +14,7 @@ var config = {
     module : {
         loaders : [
             {
-                test : /\.jsx?/,
+                test : /\.js?/,
                 include : APP_DIR,
                 loader : 'babel'
             }
