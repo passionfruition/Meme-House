@@ -2,29 +2,29 @@
     margin: 0 2px;
 }
 .lead-meme-img {
-    height: 175px;
-    width: 175px;
+    height: 100px;
+    width: 100px;
     object-fit: cover;
 }
 .lead-meme-img:hover {
     filter: brightness(70%);
     -webkit-filter: brightness(70%);
 }
-.leaderboard .fa-thumbs-up {
+.lead-meme .fa-thumbs-up {
     margin-right: 3px;
 }
 
 @media only screen and (max-width: 680px) {
     .lead-meme-img {
         padding-right: 10px;
-        height: 100px;
-        width: 100px;
+        height: 75px;
+        width: 75px;
     }
 }
 
 @media only screen and (max-width: 1023px) {
-    .leaderboard {
-        margin-top: 1rem;
+    .leaderboard-container {
+        margin-top: 0.5rem;
     }
     .scrolling-wrapper {
         white-space: nowrap;
@@ -39,3 +39,9 @@
         display: inline-block;
     }
 }
+@media only screen and (min-width: 1024px) {
+    .leaderboard {
+        height: 400px;
+        overflow: auto;
+    }
+} 
