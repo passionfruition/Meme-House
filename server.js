@@ -9,10 +9,17 @@ const app = express();
 app.use(cors());
 const router = express.Router();
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('/build'));
+}
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, '/build', 'index.html'));
+});
+
 // this is our MongoDB database
-const MONGODB_URI = process.env.MONGODB_URI || dbRoute;
 const dbRoute =
   'mongodb://localhost:27017/memes';
+const MONGODB_URI = process.env.MONGODB_URI || dbRoute;
 
 // connects our back end code with the database
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
