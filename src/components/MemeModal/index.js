@@ -11,9 +11,9 @@ function MemeModal(props) {
                     <p className="modal-card-title">Create a Meme</p>
                 <button className="delete" onClick={() => props.toggleModal("generator")} aria-label="close"></button>
                 </header>
-                    <section className="modal-card-body">
-                        <MemeGenerator />
-                    </section>
+                <section className="modal-card-body">
+                    <MemeGenerator />
+                </section>
             </div>
         </div>
     )

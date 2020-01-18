@@ -5,7 +5,6 @@ function MemeGrid(props) {
     return (
         <div>
           <div className="meme-wrapper-header">
-            <p className="title">Meme Gallery</p>
           </div>
           <div className="meme-wrapper">
               {
@@ -17,8 +16,8 @@ function MemeGrid(props) {
               <div className="meme image is-square" key={meme._id}>
                 <img alt="meme" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}></img>
                 {/* <div className="overlay" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}> </div>*/}
-                <div className="is-unselectable is-overlay" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}> 
-                  <span className="has-text-white like-count" onClick={(event) => props.showZoomedMeme(event)}><i className="fas fa-thumbs-up"></i> {meme.likes}</span>
+                <div className="is-overlay" data-id={meme._id} data-url={meme.meme} data-likes={meme.likes} src={meme.meme} onClick={(event) => props.showZoomedMeme(event)}> 
+                  <span className="has-text-white like-count is-unselectable" onClick={(event) => props.showZoomedMeme(event)}><i className="fas fa-crown"></i> {meme.likes}</span>
                 </div>
               </div>
             ))}

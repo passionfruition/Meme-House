@@ -70,12 +70,11 @@ class App extends Component {
   }
 
   showZoomedMeme = (event) => {
-    this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'], clickedMemeLikes: event.target.dataset['likes'] })
+    this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'], clickedMemeLikes: event.target.dataset['likes'], date: event.target.dataset['createdAt'] })
     this.toggleModal("zoom");
   }
 
   // Cloudinary Upload Widget //
-
   uploadWidget = () => {
     window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags: ['meme'] },
       function (error, result) {
@@ -109,16 +108,16 @@ class App extends Component {
     return (
       <div className="wrapper">
         <MemeModal toggleModal={this.toggleModal} />
-        <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
+        <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} clickedMemeLikes={this.state.clickedMemeLikes} likeMeme={this.likeMeme}/>
         <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
         <div className="columns is-desktop is-centered">
           <div className="column is-2-desktop">
             <div className="aside">
-              <Leaderboard memeLeaders={this.state.memeLeaders} />
+              <Leaderboard memeLeaders={this.state.memeLeaders} showZoomedMeme={this.showZoomedMeme}/>
               <FakeFooter />
             </div>
           </div>
-          <div className="column is-6-desktop ">
+          <div className="column is-7-desktop ">
             <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} toggleModal={this.toggleModal} clickedMemeUrl={this.clickedMemeLikes}/>
           </div>
         </div>

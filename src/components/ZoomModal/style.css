@@ -1,16 +1,6 @@
-.zoom-modal {
-    text-align: center;
-}
-
-.zoom-modal .modal-content .image .like-button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    opacity: 0.3;
-}
-
-.zoom-modal .modal-content .image .like-button:hover {
-    opacity: 1;
+.zoom-modal .modal-content .social-section .like-button {
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .zoom-modal .modal-content {
@@ -21,4 +11,8 @@
     margin: 0 auto;
     min-width: 300px;
     max-width: 350px;
+}
+
+.social-section {
+    padding: 5px 6px;
 }

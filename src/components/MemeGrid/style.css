@@ -1,5 +1,7 @@
 .meme {
-    border: 1px solid rgb(230, 230, 230)
+    border: 1px solid rgb(230, 230, 230);
+    background: rgb(170, 218, 224);
+    cursor: pointer;
 }
 .meme-wrapper-header {
     margin-top:-1.5rem;
@@ -14,18 +16,12 @@
 .meme-wrapper img {
     object-fit: cover;  
 }
-.meme-wrapper .meme:hover .is-overlay {
-    opacity: 1;
-}
-.is-overlay {
-    opacity: 0;
-    transition: .05s ease;
-    background-color: rgba(0, 0, 0, 0.5);
-}
 .is-overlay .like-count {
     position: absolute;
-    top: 42%;
-    left: 42%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    bottom: 4%;
+    left: 6%;
 }
 /* Larger screens */
 @media only screen and (min-width: 550px) {
@@ -40,5 +36,13 @@
     }
     .meme-wrapper {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+    .meme-wrapper .meme:hover .is-overlay {
+        opacity: 1;
+    }
+    .is-overlay {
+        opacity: .1;
+        transition: 0.5s ease;
+        background-color: rgba(0, 0, 0, 0.15);
     }
 }
