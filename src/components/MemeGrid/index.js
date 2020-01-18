@@ -4,9 +4,9 @@ import './style.css'
 function MemeGrid(props) {
     return (
         <div>
-          <div className="meme-wrapper-header">
+          {/* <div className="meme-wrapper-header">
             <p className="title">Meme Gallery</p>
-          </div>
+          </div> */}
           <div className="meme-wrapper">
               {
               !props.memeGallery[0] ? 
