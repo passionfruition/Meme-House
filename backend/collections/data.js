@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //DB data structure
-const DataSchema = new Schema(
+const MemeSchema = new Schema(
     {
         meme: {
             type: String,
             required: true
         },
-        likes: {
+        usersWhoLiked: {
+            type: Array,
+            default: []
+        },
+        totalLikes: {
             type: Number,
             required: true,
             default: 0
@@ -20,4 +24,4 @@ const DataSchema = new Schema(
 );
 
 // export new Schema to modify using Node.js
-module.exports = mongoose.model('Meme', DataSchema);
+module.exports = mongoose.model('Meme', MemeSchema);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
-const Data = require('./data.js');
+const Data = require('./collections/data.js');
 
 const API_PORT = 3001;
 const app = express();
