@@ -3,7 +3,7 @@ import domtoimage from 'dom-to-image-more';
 import FakeFooter from '../FakeFooter';
 import './style.css';
 import axios from 'axios'
-// import cloudinary from 'cloudinary'
+
 // eslint-disable-next-line
 import { saveAs } from 'file-saver';
 
@@ -79,6 +79,7 @@ function MemeGenerator() {
         .catch((err) => {
           console.log(err);
         });
+      window.location.reload();
       }
     });
 
