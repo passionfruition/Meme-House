@@ -30,6 +30,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Route for getting all Memes from the db
+
+app.get('/'), function (req,res) {
+  res.render('index');
+}
+
 app.get('/api/memes', function(req, res) {
   Data.find({}, null, {sort: '-createdAt'}, function(err, memes) {
     if(err) {
