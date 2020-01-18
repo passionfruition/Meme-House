@@ -9,6 +9,7 @@ import Leaderboard from '../src/components/Leaderboard';
 import MemeModal from '../src/components/MemeModal';
 import ZoomModal from '../src/components/ZoomModal';
 import FakeFooter from '../src/components/FakeFooter';
+import ScrollToTop from '../src/components/ScrollToTop';
 
 class App extends Component {
   state = {
@@ -19,7 +20,7 @@ class App extends Component {
     memeLeaders: [],
     clickedMemeUrl: "",
     clickedMemeId: "",
-    clickedMemeLikes: 0
+    clickedMemeLikes: 0,
   }
 
   componentDidMount() {
@@ -38,6 +39,15 @@ class App extends Component {
         });
       });
     }
+    // Scroll to top
+    document.addEventListener("scroll", () => { 
+      if (window.scrollY > 170) { 
+           this.setState({ position: true }) 
+      } else { 
+          this.setState({ position: false }) 
+      } 
+    }); 
+    window.scrollTo(0, 0); 
   }
 
   //get method that uses backend api to get data from DB - GC
@@ -107,6 +117,7 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
+        <ScrollToTop scrollStepInPx="50" delayInMs="16.66"/>
         <MemeModal toggleModal={this.toggleModal} />
         <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} clickedMemeLikes={this.state.clickedMemeLikes} likeMeme={this.likeMeme}/>
         <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
