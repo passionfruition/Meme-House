@@ -39,16 +39,6 @@ class App extends Component {
         });
       });
     }
-    // Scroll to top
-    document.addEventListener("scroll", () => { 
-      if (window.scrollY > 170) { 
-           this.setState({ position: true }) 
-      } else { 
-          this.setState({ position: false }) 
-      } 
-    }); 
-    window.scrollTo(0, 0); 
-  }
 
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
