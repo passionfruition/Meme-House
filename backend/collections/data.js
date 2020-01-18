@@ -12,7 +12,7 @@ const MemeSchema = new Schema(
             type: Array,
             default: []
         },
-        totalLikes: {
+        likes: {
             type: Number,
             required: true,
             default: 0
