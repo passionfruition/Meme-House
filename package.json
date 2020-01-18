@@ -28,7 +28,7 @@
   "scripts": {
     "build": "react-scripts build",
     "serve": "serve ./public",
-    "start": "node server.js",
+    "start": "node server.js && react-scripts start",
     "heroku-postbuild": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

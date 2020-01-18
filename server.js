@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 // Route for getting all Memes from the db
 
 app.get('/'), function (req,res) {
-  res.render('index');
+  res.render('root');
 }
 
 app.get('/api/memes', function(req, res) {
