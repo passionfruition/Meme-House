@@ -9,7 +9,12 @@ import Leaderboard from '../src/components/Leaderboard';
 import MemeModal from '../src/components/MemeModal';
 import ZoomModal from '../src/components/ZoomModal';
 import FakeFooter from '../src/components/FakeFooter';
+import ScrollUpButton from "react-scroll-up-button";
 
+// Style for Scroll Button 
+const style = { padding: '3px', borderRadius: '50px', right: '3rem', bottom: '2rem' , backgroundColor: 'red', outline: 0, zIndex: 20};
+
+// App 
 class App extends Component {
   state = {
     // Initializing state for Meme DB - GC
@@ -19,7 +24,7 @@ class App extends Component {
     memeLeaders: [],
     clickedMemeUrl: "",
     clickedMemeId: "",
-    clickedMemeLikes: 0
+    clickedMemeLikes: 0,
   }
 
   componentDidMount() {
@@ -70,12 +75,11 @@ class App extends Component {
   }
 
   showZoomedMeme = (event) => {
-    this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'], clickedMemeLikes: event.target.dataset['likes'] })
+    this.setState({ clickedMemeUrl: event.target.dataset['url'], clickedMemeId: event.target.dataset['id'], clickedMemeLikes: event.target.dataset['likes'], date: event.target.dataset['createdAt'] })
     this.toggleModal("zoom");
   }
 
   // Cloudinary Upload Widget //
-
   uploadWidget = () => {
     window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags: ['meme'] },
       function (error, result) {
@@ -108,17 +112,18 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
+        <ScrollUpButton style={style} ToggledStyle={style}/>
         <MemeModal toggleModal={this.toggleModal} />
-        <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} likeMeme={this.likeMeme}/>
+        <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} clickedMemeLikes={this.state.clickedMemeLikes} likeMeme={this.likeMeme}/>
         <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
         <div className="columns is-desktop is-centered">
           <div className="column is-2-desktop">
             <div className="aside">
-              <Leaderboard memeLeaders={this.state.memeLeaders} />
+              <Leaderboard memeLeaders={this.state.memeLeaders} showZoomedMeme={this.showZoomedMeme}/>
               <FakeFooter />
             </div>
           </div>
-          <div className="column is-6-desktop ">
+          <div className="column is-7-desktop ">
             <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} toggleModal={this.toggleModal} clickedMemeUrl={this.clickedMemeLikes}/>
           </div>
         </div>

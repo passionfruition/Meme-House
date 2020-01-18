@@ -1,14 +1,11 @@
 .lead-meme {
-    margin: 0 2px;
+    margin: 0 4px;
 }
 .lead-meme-img {
     height: 100px;
     width: 100px;
     object-fit: cover;
-}
-.lead-meme-img:hover {
-    filter: brightness(70%);
-    -webkit-filter: brightness(70%);
+    cursor: pointer;
 }
 .lead-meme .fa-thumbs-up {
     margin-right: 3px;
@@ -43,5 +40,9 @@
     .leaderboard {
         height: 400px;
         overflow: auto;
+    }
+    .lead-meme-img {
+        height: 125px;
+        width: 125px;
     }
 } 
