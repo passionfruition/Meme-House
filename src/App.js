@@ -9,8 +9,12 @@ import Leaderboard from '../src/components/Leaderboard';
 import MemeModal from '../src/components/MemeModal';
 import ZoomModal from '../src/components/ZoomModal';
 import FakeFooter from '../src/components/FakeFooter';
-import ScrollToTop from '../src/components/ScrollToTop';
+import ScrollUpButton from "react-scroll-up-button";
 
+// Style for Scroll Button 
+const style = { padding: '3px', borderRadius: '50px', right: '3rem', bottom: '2rem' , backgroundColor: 'red', outline: 0, zIndex: 20};
+
+// App 
 class App extends Component {
   state = {
     // Initializing state for Meme DB - GC
@@ -108,7 +112,7 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <ScrollToTop scrollStepInPx="50" delayInMs="16.66" />
+        <ScrollUpButton style={style} ToggledStyle={style}/>
         <MemeModal toggleModal={this.toggleModal} />
         <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} clickedMemeLikes={this.state.clickedMemeLikes} likeMeme={this.likeMeme}/>
         <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
