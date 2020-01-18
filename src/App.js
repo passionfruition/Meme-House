@@ -39,6 +39,7 @@ class App extends Component {
         });
       });
     }
+  }
 
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
@@ -107,7 +108,7 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <ScrollToTop scrollStepInPx="50" delayInMs="16.66"/>
+        <ScrollToTop scrollStepInPx="50" delayInMs="16.66" />
         <MemeModal toggleModal={this.toggleModal} />
         <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} clickedMemeLikes={this.state.clickedMemeLikes} likeMeme={this.likeMeme}/>
         <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
