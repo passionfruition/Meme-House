@@ -1,0 +1,14 @@
+#scroll {
+    position: fixed;
+    color: rgb(226, 0, 0);
+    bottom: 3rem;
+    right: 3rem;
+    opacity: 0.3;
+    font-size: 3rem;
+    line-height: 0;
+    z-index: 20;
+    transition: 0.5s ease;
+}
+#scroll:hover {
+    opacity: 1;
+}
