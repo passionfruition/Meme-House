@@ -1,3 +1,6 @@
+.meme-gen-columns .column {
+    padding: 0;
+}
 /* Content */
 .textTop, .textBottom {
   position: absolute;
