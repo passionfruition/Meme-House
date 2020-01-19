@@ -42,9 +42,9 @@ class Signup extends React.Component {
             <div className="container">
                 <div className="card">
                     <header className="card-header">
-                        <p className="card-header-title">
-                            <h5 className="title">Sign Up</h5>
-                        </p>
+                        <h5 className="card-header-title title">
+                            Sign Up
+                        </h5>
                     </header>
                     <div className="card-content">
                         <p className="subtitle">Please sign up for an account.</p>
@@ -52,7 +52,7 @@ class Signup extends React.Component {
                             <div className="field">
                                 <label className="label" htmlFor="exampleInputEmail1">Email address</label>
                                 <div className="control has-icons-left">
-                                    <input type="email" name="email" value={this.state.email} onChange={this.handleChange} className="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                                    <input type="email" name="email" autoComplete="username" value={this.state.email} onChange={this.handleChange} className="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-envelope"></i>
                                     </span>
@@ -61,14 +61,14 @@ class Signup extends React.Component {
                             <div className="field">
                                 <label className="label" htmlFor="exampleInputPassword1">Password</label>
                                 <div className="control has-icons-left">
-                                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control input" id="exampleInputPassword1" placeholder="Password" />
+                                    <input type="password" name="password" autoComplete="new-password" value={this.state.password} onChange={this.handleChange} className="form-control input" id="exampleInputPassword1" placeholder="Password" />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-lock"></i>
                                     </span>
                                 </div>
                             </div>
                             {(this.state.error ?
-                                <div className="alert alert-danger" role="alert">
+                                <div className="notification is-danger is-light" role="alert">
                                     Sorry, we couldn't sign you up with that username and password. Please try again.
                                     </div>
                                 :
