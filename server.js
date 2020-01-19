@@ -2,19 +2,65 @@ const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require("path");
+const session = require("express-session");
+const MongoSessionStore = require("connect-mongo")(session);
 const Data = require('./data.js');
+
+const helmet = require("helmet");
+const morgan = require("morgan");
+
+require("dotenv").config();
+
+const passport = require("./config/passport");
+
+// connects our back end code with the database
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/memes",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
 
-// this is our MongoDB database
-const dbRoute =
-  'mongodb://localhost:27017/memes';
+if (process.env.NODE_ENV === "production") {
+  app.use(helmet.hsts()); //use https
+}
 
-// connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+}
+
+//Set up our session
+const sessionConfig = {
+  store: new MongoSessionStore({ mongooseConnection: mongoose.connection }), //this line says we're going to use the connection to the db we already have
+  secret: "process.env.COOKIE_SECRET",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    path: "/"
+  },
+  name: "id" //make session cookie name generic so it's harder to tell what tech we are using
+};
+
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sessionConfig.cookie.secure = true;  // serve secure cookies
+  sessionConfig.cookie.httpOnly = true; // ensure front end js cannot touch cookie 
+}
+
+app.use(session(sessionConfig));
+// (optional) only made for logging and
+// bodyParser, parses the request body to be a readable json format
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 let db = mongoose.connection;
 
@@ -23,10 +69,18 @@ db.once('open', () => console.log('connected to the database'));
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// (optional) only made for logging and
-// bodyParser, parses the request body to be a readable json format
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+//Initialize passport 
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+// Define API routes here
+const routes = require("./routes");
+app.use(routes);
 
 // Route for getting all Memes from the db
 app.get('/api/memes', function(req, res) {
@@ -101,6 +155,13 @@ router.post('/putData', (req, res) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ data });
   });
+});
+// Default behavior: send every unmatched route request to the React app (in production)
+app.get("*", (req, res) => {
+/*   if (process.env.NODE_ENV === "production") {
+    return res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  } */
+  res.sendStatus(404);
 });
 
 app.use('/api', router);
