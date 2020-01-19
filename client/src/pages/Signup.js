@@ -53,8 +53,8 @@ class Signup extends React.Component {
                                 <label className="label" htmlFor="exampleInputEmail1">Email address</label>
                                 <div className="control has-icons-left">
                                     <input type="email" name="email" value={this.state.email} onChange={this.handleChange} className="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-envelope"></i>
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-envelope"></i>
                                     </span>
                                 </div>
                             </div>
@@ -62,8 +62,8 @@ class Signup extends React.Component {
                                 <label className="label" htmlFor="exampleInputPassword1">Password</label>
                                 <div className="control has-icons-left">
                                     <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control input" id="exampleInputPassword1" placeholder="Password" />
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-lock"></i>
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-lock"></i>
                                     </span>
                                 </div>
                             </div>

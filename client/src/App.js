@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 /* Import components */
-// import Nav from "./components/Nav";
+import Nav from "./components/Nav";
 
 class App extends React.Component {
   state = {
@@ -44,7 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        {/* <Nav user={this.state.user} logOut={this.logOut} /> */}
+        <Nav user={this.state.user} logOut={this.logOut} />
         <Switch>
           <Route path="/home">
             <Home user={this.state.user} />
