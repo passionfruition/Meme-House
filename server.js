@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const path = require("path");
 const session = require("express-session");
 const MongoSessionStore = require("connect-mongo")(session);
-const Data = require('./data.js');
-
+const Data = require('./models/data.js');
+const router = express.Router();
 const helmet = require("helmet");
 const morgan = require("morgan");
 
@@ -28,7 +28,7 @@ mongoose.connect(
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
-const router = express.Router();
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(helmet.hsts()); //use https
@@ -78,9 +78,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Define API routes here
-const routes = require("./routes");
-app.use(routes);
+
 
 // Route for getting all Memes from the db
 app.get('/api/memes', function(req, res) {
@@ -156,6 +154,12 @@ router.post('/putData', (req, res) => {
     return res.json({ data });
   });
 });
+
+// Define API routes here
+const routes = require("./routes");
+app.use(routes);
+app.use('/api', router);
+
 // Default behavior: send every unmatched route request to the React app (in production)
 app.get("*", (req, res) => {
 /*   if (process.env.NODE_ENV === "production") {
@@ -164,7 +168,7 @@ app.get("*", (req, res) => {
   res.sendStatus(404);
 });
 
-app.use('/api', router);
+
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
