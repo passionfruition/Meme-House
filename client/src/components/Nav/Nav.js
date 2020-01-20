@@ -16,19 +16,21 @@ function Nav(props) {
                         <img src="https://images.onlinelabels.com/images/clip-art/pitr/pitr_Home_icon.png" className="logo" alt="logo" width="28" height="28"></img>
                         <h1 className="title app-name">meme house</h1>
                     </a>
-                    <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                     </button>
                 </div>
-                {props.user ? loggedIn(props.logOut, props.uploadWidget, props.toggleModal) : loggedOut()}
+                <div id="navbarBasic" className="navbar-menu">
+                {props.user ? loggedIn(props.logOut, props.uploadWidget, props.toggleModal) : loggedOut(props.toggleModal)}
+                </div>
             </nav>
         </React.Fragment>
     );
 }
 
-function loggedOut() {
+function loggedOut(toggleModal) {
     return (
         <React.Fragment>
             <div className="navbar-start">
@@ -39,6 +41,7 @@ function loggedOut() {
             <div className="navbar-end">
                 <div className="navbar-item">
                     <div className="buttons">
+                        <CreateButton toggleModal={toggleModal} />
                         <Link to="/signup" className="button is-link">Sign Up</Link>
                         <Link to="/login" className="button is-link">Log In</Link>
                     </div>
@@ -65,8 +68,8 @@ function loggedIn(logOutFn, uploadWidget, toggleModal) {
                     <ReactTooltip place="bottom" effect="solid" />
                             <UploadButton uploadWidget={uploadWidget} />
                             <CreateButton toggleModal={toggleModal} />
-                            <LogInButton />
-                        <button className="button is-link" onClick={logOutFn} >Log Out</button>
+                            {/* <LogInButton /> */}
+                            <button className="button is-link" onClick={logOutFn} >Log Out</button>
                     </div>
                 </div>
             </div>

@@ -78,8 +78,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-
-
 // Route for getting all Memes from the db
 app.get('/api/memes', function(req, res) {
   Data.find({}, null, {sort: '-createdAt'}, function(err, memes) {
