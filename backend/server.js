@@ -2,19 +2,12 @@ const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
-const Data = require('./backend/collections/data');
+const Data = require('./collections/data');
 
-const API_PORT = process.env.PORT || 3001;
+const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('/build'));
-}
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, '/build', 'index.html'));
-});
 
 // this is our MongoDB database
 const dbRoute =
@@ -22,7 +15,7 @@ const dbRoute =
 const MONGODB_URI = process.env.MONGODB_URI || dbRoute;
 
 // connects our back end code with the database
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
@@ -37,11 +30,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Route for getting all Memes from the db
-
-app.get('/'), function (req,res) {
-  res.render('root');
-}
-
 app.get('/api/memes', function(req, res) {
   Data.find({}, null, {sort: '-createdAt'}, function(err, memes) {
     if(err) {
