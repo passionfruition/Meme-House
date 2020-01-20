@@ -12,7 +12,7 @@ function Nav(props) {
         <React.Fragment>
             <nav className="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <a className="navbar-item" href="/">
+                    <a className="navbar-item" href="/home">
                         <img src="https://images.onlinelabels.com/images/clip-art/pitr/pitr_Home_icon.png" className="logo" alt="logo" width="28" height="28"></img>
                         <h1 className="title app-name">meme house</h1>
                     </a>
@@ -33,11 +33,6 @@ function Nav(props) {
 function loggedOut(toggleModal) {
     return (
         <React.Fragment>
-            <div className="navbar-start">
-                <div className="navbar-item active">
-                    <Link to="/home" className="nav-link">Home <span className="sr-only">(current)</span></Link>
-                </div>
-            </div>
             <div className="navbar-end">
                 <div className="navbar-item">
                     <div className="buttons">
@@ -54,14 +49,6 @@ function loggedOut(toggleModal) {
 function loggedIn(logOutFn, uploadWidget, toggleModal) {
     return (
         <React.Fragment>
-            <div className="navbar-start">
-                <div className="navbar-item">
-                    <Link to="/home" className="nav-link">Home <span className="sr-only">(current)</span></Link>
-                </div>
-                <div className="navbar-item">
-                    <Link to="/members" className="nav-link">Members</Link>
-                </div>
-            </div>
             <div className="navbar-end">
                 <div className="navbar-item">
                     <div className="buttons">

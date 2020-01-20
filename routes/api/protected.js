@@ -4,7 +4,7 @@ const router = require("express").Router();
 router.route("/")
     .get((req, res) => {
         if (req.isAuthenticated()) {
-            return res.json({ message: "Welcome to our secret clubhouse" });
+            return res.json({ message: "Welcome to Meme House" });
         }
         res.sendStatus(401); //you are not allowed!
     });
