@@ -2,6 +2,8 @@ import * as React from 'react';
 import domtoimage from 'dom-to-image-more';
 import FakeFooter from '../FakeFooter';
 import './style.css';
+import axios from 'axios'
+
 // eslint-disable-next-line
 import { saveAs } from 'file-saver';
 
@@ -52,13 +54,47 @@ function MemeGenerator() {
     })
   }
 
+
+  // Upload Straight to Cloudinary
+  const widget = window.cloudinary.createUploadWidget({ 
+    cloudName: "traphouse", uploadPreset: "memehouse", tags: ['meme']}, 
+    (error, result) => { 
+      if (result.event === "success") {
+      console.log(`Success! added to your Database -- ${result.info.url}`)
+      axios.post('/api/putData', {
+        meme: result.info.url
+        })
+        .then((result) => {
+          let newMeme = result.config.data;
+          let tempArray = [];
+          tempArray.push(newMeme);
+          this.setState({ memeArray: tempArray });
+        })
+        .then(() => {
+          this.getDataFromDB();
+        })
+        .then(() => {
+          this.getLeadersFromDB();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      window.location.reload();
+      }
+    });
+
+  function uploadStraightToCloud() {
+    domtoimage.toPng(contentContainerRef.current).then((dataUrl) => {
+      widget.open(null, {files: [dataUrl]})})
+  }
+
   React.useEffect(() => {
     // Call fetchImage method
     fetchImage()
   }, [])
 
   return (
-    <div className="columns">
+    <div className="columns meme-gen-columns">
       <div className="column">
         <form className="form">
           <div className="formInputs">
@@ -86,11 +122,8 @@ function MemeGenerator() {
               className="button is-link"
               htmlFor="fileInput"
             >
-              <span className="file-icon">
-                <i className="fas fa-upload"></i>
-              </span>
               <span className="file-label">
-                Upload
+                Add Image
               </span>
               <input id="fileInput" name="fileInput" type="file" accept=".jpg, .jpeg, .png" onChange={handleImageInputChange} hidden />
             </label>
@@ -104,11 +137,25 @@ function MemeGenerator() {
             </button>
             {/* Download Meme Button */}
             <button
-              className="button is-success"
+              className="button is-warning"
               type="button"
               onClick={handleMemeGeneration}
             >
-              Generate
+              Download
+            </button>
+
+            {/* Upload Straight to Cloud */}
+            <button
+              className="button is-success"
+              type="button"
+              onClick={uploadStraightToCloud}
+            >
+              <span className="file-icon">
+                <i className="fas fa-upload"></i>
+              </span>
+              <span className="file-label">
+                Upload
+              </span>
             </button>
           </div>
         </form>
