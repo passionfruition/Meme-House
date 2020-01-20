@@ -28,7 +28,8 @@ class App extends React.Component {
     clickedMemeLikes: 0,
 
     // User auth
-    user: null
+    user: null,
+    isLoggedIn: false
   };
 
   componentDidMount() {
@@ -120,13 +121,16 @@ class App extends React.Component {
   }
 
   logIn = user => { // user <--  result.data
-    this.setState({ user: user }); //update our state to include result.data
+    this.setState({ user: user, isLoggedIn: true }); //update our state to include result.data
+    console.log(user.email);
+    console.log(this.state.isLoggedIn);
   };
 
   logOut = () => {
     //Make sure we do an axios call to log out from the backend...then update the state!
     axios.get("/auth/logout")
-      .then(result => this.setState({ user: null }))
+      .then(result => this.setState({ user: null, isLoggedIn: false }))
+      .then(console.log(this.state.isLoggedIn))
       .catch(err=> console.log(err));
   }
 

@@ -18,7 +18,7 @@ class Members extends React.Component {
             .catch(err => {
                 console.log(err);
             });
-        this.id = setTimeout(() => this.setState({ redirect: true }), 1000)
+        this.id = setTimeout(() => this.setState({ redirect: true }), 2000)
     }
 
     componentWillUnmount() {
