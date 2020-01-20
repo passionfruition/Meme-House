@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../Nav/style.css"
 import CreateButton from "../CreateButton";
 import UploadButton from "../UploadButton";
-import LogInButton from '../LogInButton';
+// import LogInButton from '../LogInButton';
 import ReactTooltip from 'react-tooltip';
 
 
