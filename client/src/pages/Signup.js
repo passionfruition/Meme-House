@@ -40,6 +40,8 @@ class Signup extends React.Component {
     render() {
         return (
             <div className="container">
+                <br></br>
+                <br></br>
                 <div className="card">
                     <header className="card-header">
                         <h5 className="card-header-title title">
