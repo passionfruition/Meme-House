@@ -4,7 +4,7 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 const Data = require('./backend/collections/data');
 
-const API_PORT = process.env.PORT || 3001;
+const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
@@ -22,7 +22,7 @@ const dbRoute =
 const MONGODB_URI = process.env.MONGODB_URI || dbRoute;
 
 // connects our back end code with the database
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
