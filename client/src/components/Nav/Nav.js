@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Nav/style.css"
+import CreateButton from "../CreateButton";
+import UploadButton from "../UploadButton";
+import LogInButton from '../LogInButton';
+import ReactTooltip from 'react-tooltip';
+
 
 function Nav(props) {
     return (
@@ -17,7 +22,7 @@ function Nav(props) {
                         <span aria-hidden="true"></span>
                     </button>
                 </div>
-                {props.user ? loggedIn(props.logOut) : loggedOut()}
+                {props.user ? loggedIn(props.logOut, props.uploadWidget, props.toggleModal) : loggedOut()}
             </nav>
         </React.Fragment>
     );
@@ -43,7 +48,7 @@ function loggedOut() {
     );
 }
 
-function loggedIn(logOutFn) {
+function loggedIn(logOutFn, uploadWidget, toggleModal) {
     return (
         <React.Fragment>
             <div className="navbar-start">
@@ -57,6 +62,10 @@ function loggedIn(logOutFn) {
             <div className="navbar-end">
                 <div className="navbar-item">
                     <div className="buttons">
+                    <ReactTooltip place="bottom" effect="solid" />
+                            <UploadButton uploadWidget={uploadWidget} />
+                            <CreateButton toggleModal={toggleModal} />
+                            <LogInButton />
                         <button className="button is-link" onClick={logOutFn} >Log Out</button>
                     </div>
                 </div>

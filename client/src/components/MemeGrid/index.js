@@ -21,7 +21,6 @@ function MemeGrid(props) {
                 </div>
               </div>
             ))}
-          {/* {props.createGrid()} */}
           </div>
         </div>
     )
