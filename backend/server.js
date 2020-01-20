@@ -2,19 +2,12 @@ const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
-const Data = require('./backend/collections/data');
+const Data = require('./collections/data');
 
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('/build'));
-}
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, '/build', 'index.html'));
-});
 
 // this is our MongoDB database
 const dbRoute =
