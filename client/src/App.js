@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-// import { useState } from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import MemeGrid from '../src/components/MemeGrid';
-import Navbar from '../src/components/Navbar';
-import Leaderboard from '../src/components/Leaderboard';
-import MemeModal from '../src/components/MemeModal';
-import ZoomModal from '../src/components/ZoomModal';
-import FakeFooter from '../src/components/FakeFooter';
-import ScrollUpButton from "react-scroll-up-button";
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import axios from "axios";
 
-// Style for Scroll Button 
-const style = { padding: '3px', borderRadius: '50px', right: '3rem', bottom: '2rem' , backgroundColor: 'red', outline: 0, zIndex: 20};
+/* Import pages */
+import Home from "./pages/Home";
+import Members from "./pages/Members";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
-// App 
-class App extends Component {
+/* Import components */
+import Nav from "./components/Nav";
+
+class App extends React.Component {
   state = {
-    // Initializing state for Meme DB - GC
+    // Homepage
     memeArray: [],
     meme: null,
     memeGallery: [],
@@ -25,9 +26,18 @@ class App extends Component {
     clickedMemeUrl: "",
     clickedMemeId: "",
     clickedMemeLikes: 0,
-  }
+
+    // User auth
+    user: null
+  };
 
   componentDidMount() {
+    //check to see if we're already logged in by asking the backend
+    axios.get("/auth/whoami")
+      .then(result => {
+        this.setState({user: result.data })
+      })
+      .catch(err=> console.log(err));
     // Getting Data from DB -GC
     this.getDataFromDB();
     this.getLeadersFromDB();
@@ -84,7 +94,7 @@ class App extends Component {
     window.cloudinary.openUploadWidget({ cloud_name: 'traphouse', upload_preset: 'memehouse', tags: ['meme'] },
       function (error, result) {
         console.log('************* uploading... *************')
-        console.log(result)
+        // console.log(result)
         if (result.event === "success") {
           console.log(`Success! added to your Database -- ${result.info.url}`)
           axios.post('/api/putData', {
@@ -109,25 +119,48 @@ class App extends Component {
       }.bind(this));
   }
 
+  logIn = user => { // user <--  result.data
+    this.setState({ user: user }); //update our state to include result.data
+  };
+
+  logOut = () => {
+    //Make sure we do an axios call to log out from the backend...then update the state!
+    axios.get("/auth/logout")
+      .then(result => this.setState({ user: null }))
+      .catch(err=> console.log(err));
+  }
+
   render() {
     return (
-      <div className="wrapper">
-        <ScrollUpButton style={style} ToggledStyle={style}/>
-        <MemeModal toggleModal={this.toggleModal} />
-        <ZoomModal toggleModal={this.toggleModal} clickedMemeId={this.state.clickedMemeId} clickedMemeUrl={this.state.clickedMemeUrl} clickedMemeLikes={this.state.clickedMemeLikes} likeMeme={this.likeMeme}/>
-        <Navbar toggleModal={this.toggleModal} uploadWidget={this.uploadWidget} />
-        <div className="columns is-desktop is-centered">
-          <div className="column is-2-desktop">
-            <div className="aside">
-              <Leaderboard memeLeaders={this.state.memeLeaders} showZoomedMeme={this.showZoomedMeme}/>
-              <FakeFooter />
-            </div>
-          </div>
-          <div className="column is-7-desktop ">
-            <MemeGrid  showZoomedMeme={this.showZoomedMeme} memeGallery={this.state.memeGallery} toggleModal={this.toggleModal} clickedMemeUrl={this.clickedMemeLikes}/>
-          </div>
-        </div>
-      </div>
+      <Router>
+        <Nav user={this.state.user} logOut={this.logOut} toggleModal={this.toggleModal} uploadWidget={this.uploadWidget}/>
+        <Switch>
+          <Route path="/home">
+            <Home 
+            user={this.state.user} 
+            toggleModal={this.toggleModal}
+            clickedMemeId={this.state.clickedMemeId}
+            clickedMemeUrl={this.state.clickedMemeUrl}
+            clickedMemeLikes={this.state.clickedMemeLikes}
+            likeMeme={this.likeMeme}
+            uploadWidget={this.uploadWidget}
+            memeLeaders={this.state.memeLeaders}
+            showZoomedMeme={this.showZoomedMeme}
+            memeGallery={this.state.memeGallery}
+            />
+          </Route>
+
+           <Route path="/members" render={() => (this.state.user !== null ? <Members user={this.state.user} onError={this.logOut} /> : <Redirect to="/login" />)} /> 
+
+          <Route path="/login" render={() => (this.state.user !== null ? <Redirect to="/members" /> : <Login onSuccess={this.logIn} />)} />
+
+          <Route path="/signup" render={() => (this.state.user !== null ? <Redirect to="/members" /> : <Signup onSuccess={this.logIn} />)} />
+
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
