@@ -13,7 +13,7 @@ function Nav(props) {
             <nav className="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="/home">
-                        <img src="https://images.onlinelabels.com/images/clip-art/pitr/pitr_Home_icon.png" className="logo" alt="logo" width="28" height="28"></img>
+                        <img src="https://res.cloudinary.com/traphouse/image/upload/v1579570869/bwozanaynevvgcwa2vov.png"  className="logo" alt="logo" width="35"></img>
                         <h1 className="title app-name">Meme House</h1>
                     </a>
                     <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
