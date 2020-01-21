@@ -67,8 +67,12 @@ class App extends React.Component {
   }
 
   toggleModal = (modal) => {
-      var element = document.getElementById(modal);
-      element.classList.toggle("is-active");
+      const element = document.getElementById(modal);
+      if (element !== null && element !== 'undefined') {
+        element.classList.toggle("is-active");
+      } else {
+        element.setAttribute('disabled', true);
+      }
   }
 
   likeMeme = () => {
@@ -150,11 +154,11 @@ class App extends React.Component {
             />
           </Route>
 
-          <Route path="/members" render={() => (this.state.user !== null ? <Members user={this.state.user} onError={this.logOut} /> : <Redirect to="/login" />)} /> 
+          <Route path="/members" render={() => (this.state.user !== null ? <Members user={this.state.user} toggleModal={this.toggleModal}  onError={this.logOut} /> : <Redirect to="/login" />)} /> 
 
-          <Route path="/login" render={() => (this.state.user !== null ? <Redirect to="/members" /> : <Login onSuccess={this.logIn} />)} />
+          <Route path="/login" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal}  /> : <Login onSuccess={this.logIn} />)} />
 
-          <Route path="/signup" render={() => (this.state.user !== null ? <Redirect to="/members" /> : <Signup onSuccess={this.logIn} />)} />
+          <Route path="/signup" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal} /> : <Signup onSuccess={this.logIn} />)} />
 
           <Redirect exact from="/" to="/home" />
         </Switch>

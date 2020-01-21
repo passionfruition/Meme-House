@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../Nav/style.css"
 import CreateButton from "../CreateButton";
 import UploadButton from "../UploadButton";
@@ -14,7 +14,7 @@ function Nav(props) {
                 <div className="navbar-brand">
                     <a className="navbar-item" href="/home">
                         <img src="https://images.onlinelabels.com/images/clip-art/pitr/pitr_Home_icon.png" className="logo" alt="logo" width="28" height="28"></img>
-                        <h1 className="title app-name">meme house</h1>
+                        <h1 className="title app-name">Meme House</h1>
                     </a>
                     <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
                         <span aria-hidden="true"></span>
@@ -37,8 +37,8 @@ function loggedOut(toggleModal) {
                 <div className="navbar-item">
                     <div className="buttons">
                         <CreateButton toggleModal={toggleModal} />
-                        <Link to="/signup" className="button is-link">Sign Up</Link>
-                        <Link to="/login" className="button is-link">Log In</Link>
+                        <a href="/signup" className="button is-link">Sign Up</a>
+                        <a href="/login" className="button is-link">Log In</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ function loggedIn(logOutFn, uploadWidget, toggleModal) {
                     <div className="buttons">
                     <ReactTooltip place="bottom" effect="solid" />
                             <UploadButton uploadWidget={uploadWidget} />
-                            <CreateButton toggleModal={toggleModal} />
+                            <CreateButton toggleModal={toggleModal}/>
                             {/* <LogInButton /> */}
                             <button className="button is-link" onClick={logOutFn} >Log Out</button>
                     </div>
