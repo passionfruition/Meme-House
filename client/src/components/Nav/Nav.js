@@ -5,6 +5,7 @@ import CreateButton from "../CreateButton";
 import UploadButton from "../UploadButton";
 // import LogInButton from '../LogInButton';
 import ReactTooltip from 'react-tooltip';
+import Logo from '../../2.png'
 
 
 function Nav(props) {
@@ -13,7 +14,7 @@ function Nav(props) {
             <nav className="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="/home">
-                        <img src="https://res.cloudinary.com/traphouse/image/upload/v1579570869/bwozanaynevvgcwa2vov.png"  className="logo" alt="logo" width="35"></img>
+                        <img src={Logo}  className="logo" alt="logo" width="35"></img>
                         <h1 className="title app-name">Meme House</h1>
                     </a>
                     <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
