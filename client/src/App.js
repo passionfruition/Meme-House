@@ -27,7 +27,6 @@ class App extends React.Component {
     clickedMemeUrl: "",
     clickedMemeId: "",
     clickedMemeLikes: 0,
-    liked: false,
 
     // User auth
     user: null,
@@ -81,29 +80,15 @@ class App extends React.Component {
   likeMeme = () => {
     // Doesn't have a restriction on how many times a user can like a picture, need to implement
     if (this.state.user) {
-      if(!this.state.liked) {
-        let newLikes = parseInt(this.state.clickedMemeLikes) + 1
-        axios.post('/updateData', {
-          id: this.state.clickedMemeId,
-          update: newLikes
-        })
-        .then((res) => console.log(res))
-        .then(this.setState({ clickedMemeLikes: newLikes, liked: true }))
-        .then(this.getDataFromDB())
-        .then(this.getLeadersFromDB())
-      } else {
-        let newLikes = parseInt(this.state.clickedMemeLikes) - 1
-        axios.post('/updateData', {
-          id: this.state.clickedMemeId,
-          update: newLikes
-        })
-        .then((res) => console.log(res))
-        .then(this.setState({ clickedMemeLikes: newLikes, liked: false }))
-        .then(this.getDataFromDB())
-        .then(this.getLeadersFromDB())
-      }
-    } else {
-      console.log('no');
+      let newLikes = parseInt(this.state.clickedMemeLikes) + 1
+      axios.post('/updateData', {
+        id: this.state.clickedMemeId,
+        update: newLikes
+      })
+      .then((res) => console.log(res))
+      .then(this.setState({ clickedMemeLikes: newLikes, liked: true }))
+      .then(this.getDataFromDB())
+      .then(this.getLeadersFromDB())
     }
   }
 
