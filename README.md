@@ -16,7 +16,7 @@ Want to see the freshest memes or create memes of your own? Meme House is the pl
 
 ## Main Technologies
 * [mongoose](https://mongoosejs.com/)
-* [passport](https://cloudinary.com/) - For user authentification
+* [passport](https://cloudinary.com/) - For user authentication
 * [Cloudinary](https://cloudinary.com/) - For image hosting
 * [dom-to-image-more](https://www.npmjs.com/package/dom-to-image-more) For meme saving
 * [Express](https://expressjs.com/)
