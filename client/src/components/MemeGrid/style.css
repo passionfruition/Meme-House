@@ -1,6 +1,8 @@
 .meme {
     border: 1px solid rgb(230, 230, 230);
-    background: rgb(170, 218, 224);
+    /* background: rgb(170, 218, 224); */
+    background-image: url("https://via.placeholder.com/250?text=meme");
+    object-fit: cover;
     cursor: pointer;
 }
 .meme-wrapper-header {
