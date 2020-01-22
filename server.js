@@ -153,20 +153,22 @@ router.post('/putData', (req, res) => {
   });
 });
 
+
+// // Default behavior: send every unmatched route request to the React app (in production)
+// app.get("*", (req, res) => {
+// /*   if (process.env.NODE_ENV === "production") {
+//     return res.sendFile(path.join(__dirname, "./client/build/index.html"));
+//   } */
+//   res.sendStatus(404);
+// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+});
+
 // Define API routes here
 const routes = require("./routes");
 app.use(routes);
 app.use('/api', router);
-
-// Default behavior: send every unmatched route request to the React app (in production)
-app.get("*", (req, res) => {
-/*   if (process.env.NODE_ENV === "production") {
-    return res.sendFile(path.join(__dirname, "./client/build/index.html"));
-  } */
-  res.sendStatus(404);
-});
-
-
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
