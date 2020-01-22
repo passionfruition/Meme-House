@@ -60,12 +60,12 @@ class App extends React.Component {
 
   //get method that uses backend api to get data from DB - GC
   getDataFromDB = () => {
-    axios.get('http://localhost:3001/api/memes/')
+    axios.get('/api/memes/')
       .then((res) => this.setState({ memeGallery: res.data }))
   };
 
   getLeadersFromDB = () => {
-    axios.get('http://localhost:3001/api/leaders/')
+    axios.get('/api/leaders/')
       .then((res) => this.setState({ memeLeaders: res.data }))
   }
 
@@ -83,7 +83,7 @@ class App extends React.Component {
     if (this.state.user) {
       if(!this.state.liked) {
         let newLikes = parseInt(this.state.clickedMemeLikes) + 1
-        axios.post('http://localhost:3001/updateData', {
+        axios.post('/updateData', {
           id: this.state.clickedMemeId,
           update: newLikes
         })
@@ -93,7 +93,7 @@ class App extends React.Component {
         .then(this.getLeadersFromDB())
       } else {
         let newLikes = parseInt(this.state.clickedMemeLikes) - 1
-        axios.post('http://localhost:3001/updateData', {
+        axios.post('/updateData', {
           id: this.state.clickedMemeId,
           update: newLikes
         })
