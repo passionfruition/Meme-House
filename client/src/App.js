@@ -23,9 +23,11 @@ class App extends React.Component {
     meme: null,
     memeGallery: [],
     memeLeaders: [],
+    memeUsersLiked: [],
     clickedMemeUrl: "",
     clickedMemeId: "",
     clickedMemeLikes: 0,
+    liked: false,
 
     // User auth
     user: null,
@@ -68,21 +70,41 @@ class App extends React.Component {
   }
 
   toggleModal = (modal) => {
-      var element = document.getElementById(modal);
-      element.classList.toggle("is-active");
+      const element = document.getElementById(modal);
+      if (element !== null && element !== 'undefined') {
+        element.classList.toggle("is-active");
+      } else {
+        element.setAttribute('disabled', true);
+      }
   }
 
   likeMeme = () => {
     // Doesn't have a restriction on how many times a user can like a picture, need to implement
-    let newLikes = parseInt(this.state.clickedMemeLikes) + 1
-    axios.post('http://localhost:3001/updateData', {
-      id: this.state.clickedMemeId,
-      update: newLikes
-    })
-    .then((res) => console.log(res))
-    .then(this.setState({ clickedMemeLikes: newLikes }))
-    .then(this.getDataFromDB())
-    .then(this.getLeadersFromDB())
+    if (this.state.user) {
+      if(!this.state.liked) {
+        let newLikes = parseInt(this.state.clickedMemeLikes) + 1
+        axios.post('http://localhost:3001/updateData', {
+          id: this.state.clickedMemeId,
+          update: newLikes
+        })
+        .then((res) => console.log(res))
+        .then(this.setState({ clickedMemeLikes: newLikes, liked: true }))
+        .then(this.getDataFromDB())
+        .then(this.getLeadersFromDB())
+      } else {
+        let newLikes = parseInt(this.state.clickedMemeLikes) - 1
+        axios.post('http://localhost:3001/updateData', {
+          id: this.state.clickedMemeId,
+          update: newLikes
+        })
+        .then((res) => console.log(res))
+        .then(this.setState({ clickedMemeLikes: newLikes, liked: false }))
+        .then(this.getDataFromDB())
+        .then(this.getLeadersFromDB())
+      }
+    } else {
+      console.log('no');
+    }
   }
 
   showZoomedMeme = (event) => {
@@ -154,11 +176,11 @@ class App extends React.Component {
             />
           </Route>
 
-          <Route path="/members" render={() => (this.state.user !== null ? <Members user={this.state.user} onError={this.logOut} /> : <Redirect to="/login" />)} /> 
+          <Route path="/members" render={() => (this.state.user !== null ? <Members user={this.state.user} toggleModal={this.toggleModal}  onError={this.logOut} /> : <Redirect to="/login" />)} /> 
 
-          <Route path="/login" render={() => (this.state.user !== null ? <Redirect to="/members" /> : <Login onSuccess={this.logIn} />)} />
+          <Route path="/login" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal}  /> : <Login onSuccess={this.logIn} />)} />
 
-          <Route path="/signup" render={() => (this.state.user !== null ? <Redirect to="/members" /> : <Signup onSuccess={this.logIn} />)} />
+          <Route path="/signup" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal} /> : <Signup onSuccess={this.logIn} />)} />
 
           <Redirect exact from="/" to="/home" />
         </Switch>

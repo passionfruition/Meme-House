@@ -21,7 +21,6 @@ function Home(props) {
             <ScrollUpButton style={style} ToggledStyle={style} />
             <MemeModal toggleModal={props.toggleModal} />
             <ZoomModal toggleModal={props.toggleModal} clickedMemeId={props.clickedMemeId} clickedMemeUrl={props.clickedMemeUrl} clickedMemeLikes={props.clickedMemeLikes} likeMeme={props.likeMeme} />
-            {/* <Navbar toggleModal={props.toggleModal} uploadWidget={props.uploadWidget} /> */}
             <div className="columns is-desktop is-centered">
                 <div className="column is-2-desktop">
                     <div className="aside">
