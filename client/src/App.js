@@ -66,7 +66,8 @@ class App extends React.Component {
       .then((res) => this.setState({ memeLeaders: res.data }))
   }
 
-  toggleModal = (modal) => {
+  toggleModal = (modal, e) => {
+    console.log(e.target.parentElement);
       var element = document.getElementById(modal);
       element.classList.toggle("is-active");
   }

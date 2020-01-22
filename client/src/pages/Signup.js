@@ -8,6 +8,10 @@ class Signup extends React.Component {
         error: ""
     };
 
+    componentDidMount() {
+        // document.getElementById("add-meme").disabled = true;
+    }
+
     handleChange = event => {
         event.preventDefault();
 

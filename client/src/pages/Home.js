@@ -11,28 +11,17 @@ import ZoomModal from '../components/ZoomModal';
 import FakeFooter from '../components/FakeFooter';
 import ScrollUpButton from "react-scroll-up-button";
 
-// function Home(props) {
-//     return (
-//         <div className="container">
-//             <section className="hero">
-//                 <div className="hero-body">
-//                     <h1 className="title">Hello, {(props.user ? props.user.email : 'world')}!</h1>
-//                     <p className="subtitle">This is our home page :)</p>
-//                     <hr className="" />
-//                     <p>It uses utility classNames for typography and spacing to space content out within the larger container.</p>
-//                 </div>
-//             </section>
-//         </div>
-//     );
-// }
-
-// export default Home;
-
 // Style for Scroll Button 
 const style = { padding: '3px', borderRadius: '50px', right: '3rem', bottom: '2rem', backgroundColor: 'red', outline: 0, zIndex: 20 };
 
+function showCreateButton() {
+    // document.getElementById("add-meme").disabled = false;
+}
+
+
 // App 
 function Home(props) {
+    showCreateButton()
     return (
         <div className="wrapper">
             <ScrollUpButton style={style} ToggledStyle={style} />
