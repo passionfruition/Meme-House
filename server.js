@@ -154,16 +154,16 @@ router.post('/putData', (req, res) => {
 });
 
 
-// // Default behavior: send every unmatched route request to the React app (in production)
-// app.get("*", (req, res) => {
-// /*   if (process.env.NODE_ENV === "production") {
-//     return res.sendFile(path.join(__dirname, "./client/build/index.html"));
-//   } */
-//   res.sendStatus(404);
-// });
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+// Default behavior: send every unmatched route request to the React app (in production)
+app.get("*", (req, res) => {
+if (process.env.NODE_ENV === "production") {
+  return res.sendFile(path.join(__dirname, "./client/build/index.html"));
+} 
+  res.sendStatus(404);
 });
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/client/build/index.html'));
+// });
 
 // Define API routes here
 const routes = require("./routes");

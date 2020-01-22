@@ -28,7 +28,7 @@ class Members extends React.Component {
                     <div className="box">
                         <p className="title">{this.state.message || 'Welcome to Meme House'},</p>
                         <p className="subtitle">{this.props.user.email}</p>
-                        <p className="subtitle">You may now post memes!</p>
+                        <p className="subtitle">You may now post memes! Click on "Home"</p>
                     </div>
                 </div>
             </div>

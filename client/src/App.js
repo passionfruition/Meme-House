@@ -161,7 +161,7 @@ class App extends React.Component {
       <Router>
         <Nav user={this.state.user} logOut={this.logOut} toggleModal={this.toggleModal} uploadWidget={this.uploadWidget}/>
         <Switch>
-          <Route exact path="/home">
+          <Route path="/home">
             <Home 
             user={this.state.user} 
             toggleModal={this.toggleModal}
@@ -176,11 +176,11 @@ class App extends React.Component {
             />
           </Route>
 
-          <Route exact path="/members" render={() => (this.state.user !== null ? <Members user={this.state.user} toggleModal={this.toggleModal}  onError={this.logOut} /> : <Redirect to="/login" />)} /> 
+          <Route path="/members" render={() => (this.state.user !== null ? <Members user={this.state.user} toggleModal={this.toggleModal}  onError={this.logOut} /> : <Redirect to="/login" />)} /> 
 
-          <Route exact path="/login" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal}  /> : <Login onSuccess={this.logIn} />)} />
+          <Route path="/login" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal}  /> : <Login onSuccess={this.logIn} />)} />
 
-          <Route exact path="/signup" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal} /> : <Signup onSuccess={this.logIn} />)} />
+          <Route path="/signup" render={() => (this.state.user !== null ? <Redirect to="/members" toggleModal={this.toggleModal} /> : <Signup onSuccess={this.logIn} />)} />
 
           <Redirect exact from="/" to="/home" />
         </Switch>
