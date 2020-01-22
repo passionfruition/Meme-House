@@ -8,10 +8,6 @@ class Login extends React.Component {
         error: ""
     };
 
-    componentDidMount() {
-        // document.getElementById("add-meme").disabled = true;
-    }
-
     handleChange = event => {
         event.preventDefault();
 
@@ -43,6 +39,8 @@ class Login extends React.Component {
     render() {
         return (
             <div className="container">
+                <br></br>
+                <br></br>
                 <div className="card">
                     <header className="card-header">
                         <h5 className="card-header-title title">
@@ -72,7 +70,7 @@ class Login extends React.Component {
                             </div>
                             {(this.state.error ?
                                 <div className="notification is-danger is-light" role="alert">
-                                    Sorry, we couldn't log you in with that username and password. Please try again.
+                                    Sorry, we couldn't log you in with that email and password. Please try again.
                                     </div>
                                 :
                                 '')}

@@ -14,20 +14,13 @@ import ScrollUpButton from "react-scroll-up-button";
 // Style for Scroll Button 
 const style = { padding: '3px', borderRadius: '50px', right: '3rem', bottom: '2rem', backgroundColor: 'red', outline: 0, zIndex: 20 };
 
-function showCreateButton() {
-    // document.getElementById("add-meme").disabled = false;
-}
-
-
 // App 
 function Home(props) {
-    showCreateButton()
     return (
         <div className="wrapper">
             <ScrollUpButton style={style} ToggledStyle={style} />
             <MemeModal toggleModal={props.toggleModal} />
             <ZoomModal toggleModal={props.toggleModal} clickedMemeId={props.clickedMemeId} clickedMemeUrl={props.clickedMemeUrl} clickedMemeLikes={props.clickedMemeLikes} likeMeme={props.likeMeme} />
-            {/* <Navbar toggleModal={props.toggleModal} uploadWidget={props.uploadWidget} /> */}
             <div className="columns is-desktop is-centered">
                 <div className="column is-2-desktop">
                     <div className="aside">

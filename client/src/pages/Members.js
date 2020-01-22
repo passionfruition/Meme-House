@@ -1,11 +1,13 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 class Members extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: ""
+            message: "",
+            redirect: false
         };
     }
 
@@ -15,21 +17,31 @@ class Members extends React.Component {
             .then(result => this.setState({ message: result.data.message }))
             .catch(err => {
                 console.log(err);
-/*                 this.props.onError(); */
             });
+        this.id = setTimeout(() => this.setState({ redirect: true }), 2000)
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.id)
     }
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="jumbotron col-12">
-                        <h1 className="display-4">{this.state.message || ''}, {this.props.user.email}</h1>
-                        <p className="lead">This content should only show up when you are logged in.</p>
+            this.state.redirect
+                ? <Redirect to="/home" />
+                : <div className="columns">
+                    <div className="column is-6-tablet is-offset-3-tablet">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div className="box">
+                            <p className="title">{this.state.message || ''},</p>
+                            <p className="subtitle">{this.props.user.email}</p>
+                            <p className="subtitle">You may now post memes!</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+        )
     }
 }
 

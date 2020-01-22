@@ -1,6 +1,6 @@
 .navbar {
     border-bottom: 1px solid rgba(10, 10, 10, 0.1);
-    /* padding: 10px 0; */
+    padding: 10px 0;
 }
 
 .app-name {
@@ -12,6 +12,9 @@
     background: transparent;
 }
 
+.logo {
+    transform: translateY(-5px );
+}
 
 @media only screen and (min-width: 769px) {
     .navbar {

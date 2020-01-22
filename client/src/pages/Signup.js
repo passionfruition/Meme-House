@@ -8,10 +8,6 @@ class Signup extends React.Component {
         error: ""
     };
 
-    componentDidMount() {
-        // document.getElementById("add-meme").disabled = true;
-    }
-
     handleChange = event => {
         event.preventDefault();
 
@@ -44,6 +40,8 @@ class Signup extends React.Component {
     render() {
         return (
             <div className="container">
+                <br></br>
+                <br></br>
                 <div className="card">
                     <header className="card-header">
                         <h5 className="card-header-title title">
