@@ -2,7 +2,7 @@
 
 Want to see the freshest memes or create memes of your own? Meme House is the place to be! This website allows users to create simple 'top text' and 'bottom text' memes of their own using images provided by the site or uploaded images of their own. In addition, users can upload memes to the website for others to see! Once the meme is uploaded, other users are able to 'crown' memes in order to decide who becomes the head of the house, the Meme King.
 
-[Deployed](https://meme-house-ggm.herokuapp.com/home)
+Deployed here: [https://meme-house-ggm.herokuapp.com/home](https://meme-house-ggm.herokuapp.com/home)
 
 ## Log In
 ![LogIn](https://user-images.githubusercontent.com/47680567/72858794-cd83dd00-3c76-11ea-83a9-aab12cd2a5a9.gif)
